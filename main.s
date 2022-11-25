@@ -37,7 +37,7 @@ buzzer_loop:
     
     movff   T2CON, temp1
     movlw   0x04
-    xorwf   temp1, W		; OR OPERATION, I THINK THIS TOGGLES THE PRESCALER OR SOMETHING?
+    iorwf   temp1, W		; OR OPERATION, I THINK THIS TOGGLES THE PRESCALER OR SOMETHING?
     movff   temp1, T2CON
     
     bra	    buzzer_loop		; LOOP
