@@ -1,12 +1,12 @@
-	#include <xc.inc>
+#include <xc.inc>
 	
 global	buzzer
 
-psect	code, abs
+
 	
 	;THIS IS A GIT TEST
 	
-	
+psect	buzzer_code, class=CODE
 
 buzzer:
     movlw   0xF9		;SETTING PERIOD BY WRITING TO PR2
@@ -33,6 +33,6 @@ buzzer:
     return
 
     
-    end main
+    end
 
 
