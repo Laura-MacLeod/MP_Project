@@ -2,9 +2,27 @@
 	
 global	buzzer
 
-
+    
+    
+    
+    
+    
+    
+; CURRENTLY REDUNDANT DUE TO UNKNOWN SYMBOL ERRORS
+; WILL UPDATE MODULAR PART (THIS FILE) ONCE PWM IS FUNCTIONAL
 	
-	;THIS IS A GIT TEST
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 	
 psect	buzzer_code, class=CODE
 
