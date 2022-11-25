@@ -2,7 +2,8 @@
 
 extrn	buzzer
 	
-psect	code, abs
+psect	code, abs, class=CODE
+
 	
 	;THIS IS A GIT TEST
 
