@@ -40,7 +40,7 @@ buzzer_loop:
     movwf   TMR2	; SET TIMER TO 0?
     
     movlw   0x01
-    movwf   T2CON	; prescaler = 4?
+    movwf   T2CON	; prescaler = 4, timer2 is OFF
     
     movff   T2CON, temp1
     movlw   0x04
