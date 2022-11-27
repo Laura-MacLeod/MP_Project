@@ -8,6 +8,11 @@ psect	code, abs
 	
 	
 	;CURRENTLY SET FOR CCP6, WHICH IS CONNECTED TO RE6 PIN
+	
+	;LOOKING AT VIDEO https://www.youtube.com/watch?v=PVX3dtIptKA (WHICH USES ECCP!): 
+	;MAY NEED PSTRxCON SO: PxA pin has the PWM waveform with polarity control from CCPxM<1:0>
+	;MAY NEED TO CLEAR CCPTMRS0 REGISTER SINCE 2LSBs AT 00 MEAN ECCP1 is based off of TMR1/TMR2
+	
 
 
 	
@@ -26,6 +31,8 @@ buzzer_loop:
     movlw   0x1C	;SETTING DUTY CYCLE
     movwf   CCP6CON	; CCP4CON register bits 7-6 are 0, bits 5-4 are LSBs of duty cycle
 			; bits 3-0 are 11xx (try 1100, 0x0C) for PWM mode
+			; bits 7-6 put it in single output mode, bits 5-4 give duty cycle values, bits 3-0 put it in PWM mode
+			; may need ECCP so bits 1-0 can be specified as 00 which is PWM mode: PxA and PxC are active-high; PxB and PxD are active-high?
     movlw   0x00
     movf    TRISE	;CLEAR TRIS BIT, MAKE PORT AN OUTPUT
     
@@ -38,6 +45,7 @@ buzzer_loop:
     movff   T2CON, temp1
     movlw   0x04
     iorwf   temp1, W		; OR OPERATION, I THINK THIS TOGGLES THE PRESCALER OR SOMETHING?
+    				; THIS OR OPERATION BETWEEN 0x01 AND 0x04 GIVES 0x05. THIS IS CORRECT - 0x05 SETS TIMER ON WITH PRESCALER 4
     movff   temp1, T2CON
     
     bra	    buzzer_loop		; LOOP
