@@ -149,7 +149,7 @@ EPWM1_INITIALIZE:
 	  
 	
     ;CCPR1L 127;
-    MOVLW   0x2	    ;DUTY CYCLE
+    MOVLW   0x3	    ;DUTY CYCLE
     MOVWF   CCPR1L  ;-----------------------------------------------------------------
 
     ;Selecting Timer2
