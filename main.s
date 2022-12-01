@@ -87,27 +87,28 @@ INIT:
     CALL    EPWM2_INITIALIZE
     
 MAIN:
-    ;MOVLW   0x64
-    ;MOVWF   LEFT_DUTY
-    ;CALL    LEFT_POLARITY1
+    MOVLW   0x64
+    MOVWF   LEFT_DUTY
+    CALL    LEFT_POLARITY1
     
-    ;MOVLW   0x64
-    ;MOVWF   RIGHT_DUTY
-    ;CALL    RIGHT_POLARITY2
+    MOVLW   0x64
+    MOVWF   RIGHT_DUTY
+    CALL    RIGHT_POLARITY2
     bra    MAIN
     
 ISR:
     RETFIE
     
-OSC_INIT:
-    MOVLW   0xFFFF
-    MOVWF   OSCCON	;Oscillator Speed is 4MHz ; Fosc = 4MHz
-
-    MOVLW   0xFF
-    MOVWF   OSCCON
     
-    MOVLW   0xFF
-    MOVWF   OSCCON
+OSC_INIT:
+    
+    ; INITIALISING OSCCON CLOCK REGISTER
+    BCF	    OSCTUNE, 7
+    BSF	    OSCCON2, 0
+    
+    BCF	    OSCCON, 4	;Oscillator Speed is 31.25kHz ; Fosc = 31.25kHz
+    BSF	    OSCCON, 5
+    BSF	    OSCCON, 6
     
     RETURN
     
