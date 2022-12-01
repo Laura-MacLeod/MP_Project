@@ -1,24 +1,36 @@
 	#include <xc.inc>
 
-psect	code, abs
+EXTRN	PORT_INIT, CLOCK_INIT, TIMER_INIT, PWM_INIT, SIGNAL
+EXTRN	duty_cycle_upper, duty_cycle_lower
 	
-main:
-	org	0x0
-	goto	start
+psect	code
+	
+RST:
+    
+    ORG	    0x00
+    GOTO    INIT
+    
+    
+INIT:
+    
+    CALL    PORT_INIT
+    CALL    CLOCK_INIT
+    CALL    TIMER_INIT
+    CALL    PWM_INIT
+    
+    GOTO    MAIN
+    
+    
+MAIN:
+    
+    ; Set duty cycle
 
-	org	0x100		    ; Main code starts here at address 0x100
-start:
-	movlw 	0x0
-	movwf	TRISB, A	    ; Port C all outputs
-	bra 	test
-loop:
-	movff 	0x06, PORTB
-	incf 	0x06, W, A
-test:
-	movwf	0x06, A	    ; Test for end of loop condition
-	movlw 	0x63
-	cpfsgt 	0x06, A
-	bra 	loop		    ; Not yet finished goto start of loop again
-	goto 	0x0		    ; Re-run program from start
-
-	end	main
+    MOVLW   0x0F		; (random)
+    MOVWF   duty_cycle_upper
+    
+    MOVLW   0x00111100 		;must be 0b00xx1100 
+    MOVWF   duty_cycle_lower
+	
+    BRA	    MAIN
+	
+	
