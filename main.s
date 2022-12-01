@@ -5,6 +5,8 @@ EXTRN	duty_cycle_upper, duty_cycle_lower
 	
 psect	code
 	
+	;THIS IS A GIT TEST
+	
 RST:
     
     ORG	    0x00
