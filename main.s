@@ -1,18 +1,19 @@
 	#include <xc.inc>
 
-EXTRN	PORT_INIT, CLOCK_INIT, TIMER_INIT, PWM_INIT, SIGNAL
+;EXTRN	PORT_INIT, CLOCK_INIT, TIMER_INIT, PWM_INIT, SIGNAL
 EXTRN	duty_cycle_upper, duty_cycle_lower
-	
-psect	code
-	
+EXTRN PWM_INIT, TIMER_INIT, CLOCK_INIT, PORT_INIT	
+
 	;THIS IS A GIT TEST
+psect	code,abs
+
 	
 RST:
     
     ORG	    0x00
     GOTO    INIT
     
-    
+    org 0x100
 INIT:
     CALL    PORT_INIT
     CALL    CLOCK_INIT
@@ -32,7 +33,8 @@ MAIN:
     MOVLW   0x00111100 		;must be 0b00xx1100 
     MOVWF   duty_cycle_lower
 
-    CALL    SIGNAL
+   ; CALL    SIGNAL
     BRA	    MAIN
 	
-	
+
+END	RST   
