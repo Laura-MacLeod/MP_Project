@@ -14,6 +14,7 @@ clock_speed_bits:	ds  1
     
 PORT_INIT:
     
+    MOVLB   0xF
     BCF	    TRISC, 2	    ; Set P1A/RC2 pin to output
     
     RETURN
