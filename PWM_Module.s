@@ -72,7 +72,7 @@ SIGNAL:
     ; Duty cycle value should be prewritten to 'duty_cycle'
     
     MOVFF   duty_cycle_upper, CCPR1L	    ;set new duty cycle (8 MSBs)
-    MOVFF   duty_cycle_lower, CCP1CON	    ;set new duty cycle (2 LSBs), might not be necessary
+    ;MOVFF   duty_cycle_lower, CCP1CON	    ;set new duty cycle (2 LSBs), might not be necessary
     
     RETURN
     
