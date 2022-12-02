@@ -9,7 +9,8 @@ duty_cycle_upper:	ds  1
 duty_cycle_lower:	ds  1
 clock_speed_bits:	ds  1
 
-
+;GIT TEST 2
+    
  psect	pwm_code, class=CODE
     
 PORT_INIT:
