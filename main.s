@@ -14,7 +14,6 @@ RST:
     
     
 INIT:
-    
     CALL    PORT_INIT
     CALL    CLOCK_INIT
     CALL    TIMER_INIT
@@ -27,12 +26,13 @@ MAIN:
     
     ; Set duty cycle
 
-    MOVLW   0x0F		; (random)
+    MOVLW   0xFF		; (random)
     MOVWF   duty_cycle_upper
     
     MOVLW   0x00111100 		;must be 0b00xx1100 
     MOVWF   duty_cycle_lower
-	
+
+    CALL    SIGNAL
     BRA	    MAIN
 	
 	
