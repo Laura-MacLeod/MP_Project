@@ -3,18 +3,17 @@
 GLOBAL	PORT_INIT, CLOCK_INIT, TIMER_INIT, PWM_INIT, SIGNAL
 GLOBAL	duty_cycle_upper, duty_cycle_lower
 	
-psect	PWM_data
+psect	udata_acs
 	
 duty_cycle_upper:	ds  1
 duty_cycle_lower:	ds  1
 clock_speed_bits:	ds  1
 
 
- psect	PWM_code
+ psect	pwm_code, class=CODE
     
 PORT_INIT:
-    
-    MOVLB   0xF
+
     BCF	    TRISC, 2	    ; Set P1A/RC2 pin to output
     
     RETURN
@@ -55,7 +54,7 @@ PWM_INIT:
     MOVLW   0x3C	    ; 0b00111100 
     MOVWF   CCP1CON	    ; <7:6> output mode set 00, <5:4> duty cycle 2 LSBs, <3:0> set 11xx for PWM mode, ideally 1100
     
-    MOVLW   0x3		    ; 0b00000011
+    MOVLW   0x64	    ; 0b00000011
     MOVWF   CCPR1L	    ; Set duty cycle,   (CCPR1L:CCP1CON<5:4>) = PWM Duty Cycle /  (TOSC • (TMR2 Prescale Value)); Equation 19-2
     
     MOVLW   0x01	    ; 0b00000001
@@ -81,7 +80,5 @@ SIGNAL:
 CALC_PERIOD:
     ; PR2 = (Fosc/(4*PWMfreq*prescale)) - 1
     
-    
-    
 	
-	
+END
