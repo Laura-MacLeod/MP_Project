@@ -47,6 +47,7 @@ MAIN:
     CALL    SIGNAL
     
     CALL	    DELAY
+    CALL	    DELAY
     
     MOVLW   0xC		
     MOVWF   duty_cycle_upper
@@ -54,11 +55,13 @@ MAIN:
     
     
     CALL	    DELAY
+    CALL	    DELAY
     
     MOVLW   0xD		
     MOVWF   duty_cycle_upper
     CALL    SIGNAL
     
+    CALL	    DELAY
     CALL	    DELAY
     
     MOVLW   0xE
@@ -66,11 +69,6 @@ MAIN:
     CALL    SIGNAL
     
     CALL	    DELAY
-    
-    MOVLW   0xF		
-    MOVWF   duty_cycle_upper
-    CALL    SIGNAL
-    
     CALL	    DELAY
     
     MOVLW   0xF		
@@ -78,11 +76,20 @@ MAIN:
     CALL    SIGNAL
     
     CALL	    DELAY
+    CALL	    DELAY
     
     MOVLW   0xF		
     MOVWF   duty_cycle_upper
     CALL    SIGNAL
     
+    CALL	    DELAY
+    CALL	    DELAY
+    
+    MOVLW   0xF		
+    MOVWF   duty_cycle_upper
+    CALL    SIGNAL
+    
+    CALL	    DELAY
     CALL	    DELAY
     
     MOVLW   0xE		
@@ -90,11 +97,13 @@ MAIN:
     CALL    SIGNAL
     
     CALL	    DELAY
+    CALL	    DELAY
     
     MOVLW   0xD		
     MOVWF   duty_cycle_upper
     CALL    SIGNAL
     
+    CALL	    DELAY
     CALL	    DELAY
     
     MOVLW   0xC		
@@ -102,11 +111,13 @@ MAIN:
     CALL    SIGNAL
     
     CALL	    DELAY
+    CALL	    DELAY
     
     MOVLW   0xA		
     MOVWF   duty_cycle_upper
     CALL    SIGNAL
     
+    CALL	    DELAY
     CALL	    DELAY
     
     MOVLW   0x8		
@@ -114,11 +125,13 @@ MAIN:
     CALL    SIGNAL
     
     CALL	    DELAY
+    CALL	    DELAY
     
     MOVLW   0x6		
     MOVWF   duty_cycle_upper
     CALL    SIGNAL
     
+    CALL	    DELAY
     CALL	    DELAY
     
     MOVLW   0x5		
@@ -126,11 +139,13 @@ MAIN:
     CALL    SIGNAL
     
     CALL	    DELAY
+    CALL	    DELAY
     
     MOVLW   0x4		
     MOVWF   duty_cycle_upper
     CALL    SIGNAL
     
+    CALL	    DELAY
     CALL	    DELAY
     
     MOVLW   0x3		
@@ -138,11 +153,13 @@ MAIN:
     CALL    SIGNAL
     
     CALL	    DELAY
+    CALL	    DELAY
     
     MOVLW   0x2		
     MOVWF   duty_cycle_upper
     CALL    SIGNAL
     
+    CALL	    DELAY
     CALL	    DELAY
     
     MOVLW   0x1		
@@ -150,17 +167,20 @@ MAIN:
     CALL    SIGNAL
     
     CALL    DELAY
-    
-    MOVLW   0x1		
-    MOVWF   duty_cycle_upper
-    CALL    SIGNAL
-    
     CALL	    DELAY
     
     MOVLW   0x1		
     MOVWF   duty_cycle_upper
     CALL    SIGNAL
     
+    CALL	    DELAY
+    CALL	    DELAY
+    
+    MOVLW   0x1		
+    MOVWF   duty_cycle_upper
+    CALL    SIGNAL
+    
+    CALL	    DELAY
     CALL	    DELAY
     
     MOVLW   0x2		
@@ -168,11 +188,13 @@ MAIN:
     CALL    SIGNAL
     
     CALL	    DELAY
+    CALL	    DELAY
     
     MOVLW   0x3		
     MOVWF   duty_cycle_upper
     CALL    SIGNAL
     
+    CALL	    DELAY
     CALL	    DELAY
     
     MOVLW   0x4		
@@ -180,17 +202,20 @@ MAIN:
     CALL    SIGNAL
     
     CALL	    DELAY
+    CALL	    DELAY
     
     MOVLW   0x5		
     MOVWF   duty_cycle_upper
     CALL    SIGNAL
     
     CALL	    DELAY
-   
+    CALL	    DELAY
+    
     MOVLW   0x7		
     MOVWF   duty_cycle_upper
     CALL    SIGNAL
     
+    CALL	    DELAY
     CALL	    DELAY
     
     MOVLW   0x9		
@@ -198,11 +223,13 @@ MAIN:
     CALL    SIGNAL
     
     CALL	    DELAY
+    CALL	    DELAY
     
     MOVLW   0xA		
     MOVWF   duty_cycle_upper
     CALL    SIGNAL
     
+    CALL	    DELAY
     CALL	    DELAY
     
     MOVLW   0xA		
@@ -223,11 +250,14 @@ MAIN:
 
     
 DELAY:	
-	MOVLW   0XFF
-	MOVWF   delay_count
+	MOVLW   0XAA
+	MOVWF   delay_count, A
 	
+DELAY2:
 	decfsz	delay_count, A	; decrement until zero
-	bra	DELAY
+	bra	DELAY2
+	
+	
 	return
     
     
