@@ -32,8 +32,8 @@ MAIN:
 
     ; Set duty cycle
 
-    MOVLW   0xFF		; (random)
-    MOVWF   duty_cycle_upper
+    ;MOVLW   0xFF		; (random)
+    ;MOVWF   duty_cycle_upper
     
     ;MOVLW   0x00111100 		;must be 0b00xx1100 
     ;MOVWF   duty_cycle_lower
@@ -42,170 +42,170 @@ MAIN:
     
     CALL	    DELAY
     
-    MOVLW   0xEF		
+    MOVLW   0xA		
     MOVWF   duty_cycle_upper
     CALL    SIGNAL
     
     CALL	    DELAY
     
-    MOVLW   0xDF		
+    MOVLW   0xC		
     MOVWF   duty_cycle_upper
     CALL    SIGNAL
     
     
     CALL	    DELAY
     
-    MOVLW   0xCF		
+    MOVLW   0xD		
     MOVWF   duty_cycle_upper
     CALL    SIGNAL
     
     CALL	    DELAY
     
-    MOVLW   0xBF		
+    MOVLW   0xE
     MOVWF   duty_cycle_upper
     CALL    SIGNAL
     
     CALL	    DELAY
     
-    MOVLW   0xAF		
+    MOVLW   0xF		
     MOVWF   duty_cycle_upper
     CALL    SIGNAL
     
     CALL	    DELAY
     
-    MOVLW   0x9F		
+    MOVLW   0xF		
     MOVWF   duty_cycle_upper
     CALL    SIGNAL
     
     CALL	    DELAY
     
-    MOVLW   0x8F		
+    MOVLW   0xF		
     MOVWF   duty_cycle_upper
     CALL    SIGNAL
     
     CALL	    DELAY
     
-    MOVLW   0x7F		
+    MOVLW   0xE		
     MOVWF   duty_cycle_upper
     CALL    SIGNAL
     
     CALL	    DELAY
     
-    MOVLW   0x6F		
+    MOVLW   0xD		
     MOVWF   duty_cycle_upper
     CALL    SIGNAL
     
     CALL	    DELAY
     
-    MOVLW   0x5F		
+    MOVLW   0xC		
     MOVWF   duty_cycle_upper
     CALL    SIGNAL
     
     CALL	    DELAY
     
-    MOVLW   0x4F		
+    MOVLW   0xA		
     MOVWF   duty_cycle_upper
     CALL    SIGNAL
     
     CALL	    DELAY
     
-    MOVLW   0x3F		
+    MOVLW   0x8		
     MOVWF   duty_cycle_upper
     CALL    SIGNAL
     
     CALL	    DELAY
     
-    MOVLW   0x2F		
+    MOVLW   0x6		
     MOVWF   duty_cycle_upper
     CALL    SIGNAL
     
     CALL	    DELAY
     
-    MOVLW   0x1F		
+    MOVLW   0x5		
     MOVWF   duty_cycle_upper
     CALL    SIGNAL
     
     CALL	    DELAY
     
-    MOVLW   0x2F		
+    MOVLW   0x4		
     MOVWF   duty_cycle_upper
     CALL    SIGNAL
     
     CALL	    DELAY
     
-    MOVLW   0x3F		
+    MOVLW   0x3		
     MOVWF   duty_cycle_upper
     CALL    SIGNAL
     
     CALL	    DELAY
     
-    MOVLW   0x4F		
+    MOVLW   0x2		
     MOVWF   duty_cycle_upper
     CALL    SIGNAL
     
     CALL	    DELAY
     
-    MOVLW   0x5F		
+    MOVLW   0x1		
     MOVWF   duty_cycle_upper
     CALL    SIGNAL
     
     CALL    DELAY
     
-    MOVLW   0x6F		
+    MOVLW   0x1		
     MOVWF   duty_cycle_upper
     CALL    SIGNAL
     
     CALL	    DELAY
     
-    MOVLW   0x7F		
+    MOVLW   0x1		
     MOVWF   duty_cycle_upper
     CALL    SIGNAL
     
     CALL	    DELAY
     
-    MOVLW   0x8F		
+    MOVLW   0x2		
     MOVWF   duty_cycle_upper
     CALL    SIGNAL
     
     CALL	    DELAY
     
-    MOVLW   0x9F		
+    MOVLW   0x3		
     MOVWF   duty_cycle_upper
     CALL    SIGNAL
     
     CALL	    DELAY
     
-    MOVLW   0xAF		
+    MOVLW   0x4		
     MOVWF   duty_cycle_upper
     CALL    SIGNAL
     
     CALL	    DELAY
     
-    MOVLW   0xBF		
+    MOVLW   0x5		
+    MOVWF   duty_cycle_upper
+    CALL    SIGNAL
+    
+    CALL	    DELAY
+   
+    MOVLW   0x7		
     MOVWF   duty_cycle_upper
     CALL    SIGNAL
     
     CALL	    DELAY
     
-    MOVLW   0xCF		
+    MOVLW   0x9		
     MOVWF   duty_cycle_upper
     CALL    SIGNAL
     
     CALL	    DELAY
     
-    MOVLW   0xDF		
+    MOVLW   0xA		
     MOVWF   duty_cycle_upper
     CALL    SIGNAL
     
     CALL	    DELAY
     
-    MOVLW   0xEF		
-    MOVWF   duty_cycle_upper
-    CALL    SIGNAL
-    
-    CALL	    DELAY
-    
-    MOVLW   0xFF		
+    MOVLW   0xA		
     MOVWF   duty_cycle_upper
     CALL    SIGNAL
     
