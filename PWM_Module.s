@@ -40,7 +40,7 @@ TIMER_INIT:
     
     CLRF    TMR2	    ; Clearing timer2/counter
     
-    MOVLW   0xFF	    ; 0b11111111
+    MOVLW   0x0D	    ; 0b11111111
     MOVWF   PR2		    ; Set period of signal,  PR2 = (Fosc/(4*PWMfreq*prescale)) - 1; Equation 19-1
     
     MOVLW   0xFF	    ; 0b11111111
