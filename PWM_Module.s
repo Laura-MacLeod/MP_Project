@@ -27,7 +27,7 @@ CLOCK_INIT:
     
     BSF	    OSCCON, 6	    ; 1  ;Oscillator Speed is 1MHz ; Fosc = 1MHz
     BSF	    OSCCON, 5	    ; 1	
-    BCF	    OSCCON, 4	    ; 0
+    BSF	    OSCCON, 4	    ; 0
     
     MOVLW   00000110		    ; Store three bits OSCCON<6:4> was set to like 00000<6:4>
     MOVWF   clock_speed_bits	    ; This is for calculating the clock frequency and thus 
@@ -40,10 +40,10 @@ TIMER_INIT:
     
     CLRF    TMR2	    ; Clearing timer2/counter
     
-    MOVLW   0x22	    ; 0b11111111
+    MOVLW   01110110	    ; 0b11111111
     MOVWF   PR2		    ; Set period of signal,  PR2 = (Fosc/(4*PWMfreq*prescale)) - 1; Equation 19-1
     
-    MOVLW   0xFF	    ; 0b11111111
+    MOVLW   0xFC	    ; 0b11111100
     MOVWF   T2CON	    ; Timer control register - <6:3> postscale control, <2> timer on/off, <1:0> prescale control
     
     RETURN
