@@ -28,7 +28,7 @@ CLOCK_INIT:
     
     BSF	    OSCCON, 6	    ; 1  ;Oscillator Speed is 1MHz ; Fosc = 1MHz
     BSF	    OSCCON, 5	    ; 1	
-    BSF	    OSCCON, 4	    ; 0
+    BCF	    OSCCON, 4	    ; 0
     
     MOVLW   00000110		    ; Store three bits OSCCON<6:4> was set to like 00000<6:4>
     MOVWF   clock_speed_bits	    ; This is for calculating the clock frequency and thus 
