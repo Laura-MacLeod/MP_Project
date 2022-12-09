@@ -213,701 +213,329 @@ delay:
 	
  
 Fsharp:
-    MOVLW   111011 
-
-    MOVWF   duty_cycle_upper 
-    CALL    SIGNAL 
-    CALL     DELAY 
-    MOVLW   1101110 
-    MOVWF   duty_cycle_upper 
-    CALL    SIGNAL 
-    CALL     DELAY 
-    MOVLW   1110010 
-    MOVWF   duty_cycle_upper 
-    CALL    SIGNAL 
-    CALL     DELAY 
-    MOVLW   1000100 
-    MOVWF   duty_cycle_upper 
-    CALL    SIGNAL 
-    CALL     DELAY 
-    MOVLW   1110 
-    MOVWF   duty_cycle_upper 
-    CALL    SIGNAL 
-    CALL     DELAY 
-    MOVLW   10 
-    MOVWF   duty_cycle_upper 
-    CALL    SIGNAL 
-    CALL     DELAY 
-    MOVLW   101011 
-    MOVWF   duty_cycle_upper 
-    CALL    SIGNAL 
-    CALL     DELAY 
-    MOVLW   1100011 
-    MOVWF   duty_cycle_upper 
-    CALL    SIGNAL 
-    CALL     DELAY 
-    MOVLW   1110110 
-    MOVWF   duty_cycle_upper 
-    CALL    SIGNAL 
-    CALL     DELAY 
-    MOVLW   1010100 
-    MOVWF   duty_cycle_upper 
-
-
-
-    CALL    SIGNAL 
-
-    CALL     DELAY 
-
-
-
-    MOVLW   11011 
-
-    MOVWF   duty_cycle_upper 
-
-
-
-    CALL    SIGNAL 
-
-    CALL     DELAY 
-
-
-
-    MOVLW   0 
-
-    MOVWF   duty_cycle_upper 
-
-
-
-    CALL    SIGNAL 
-
-    CALL     DELAY 
-
-
-
-    MOVLW   11011 
-
-    MOVWF   duty_cycle_upper 
-
-
-
-    CALL    SIGNAL 
-
-    CALL     DELAY 
-
-
-
-    MOVLW   1010100 
-
-    MOVWF   duty_cycle_upper 
-
-
-
-    CALL    SIGNAL 
-
-    CALL     DELAY 
-
-
-
-    MOVLW   1110111 
-
-    MOVWF   duty_cycle_upper 
-
-
-
-    CALL    SIGNAL 
-
-    CALL     DELAY 
-
-
-
-    MOVLW   1100010 
-
-    MOVWF   duty_cycle_upper 
-
-
-
-    CALL    SIGNAL 
-
-    CALL     DELAY 
-
-
-
-    MOVLW   101010 
-
-    MOVWF   duty_cycle_upper 
-
-
-
-    CALL    SIGNAL 
-
-    CALL     DELAY 
-
-
-
-    MOVLW   10 
-
-    MOVWF   duty_cycle_upper 
-
-
-
-    CALL    SIGNAL 
-
-    CALL     DELAY 
-
-
-
-    MOVLW   1110 
-
-    MOVWF   duty_cycle_upper 
-
-
-
-    CALL    SIGNAL 
-
-    CALL     DELAY 
-
-
-
-    MOVLW   1000100 
-
-    MOVWF   duty_cycle_upper 
-
-
-
-    CALL    SIGNAL 
-
-    CALL     DELAY 
-
-
-
-    MOVLW   1110010 
-
-    MOVWF   duty_cycle_upper 
-
-
-
-    CALL    SIGNAL 
-
-    CALL     DELAY 
-
-
-
-    MOVLW   1101101 
-
-    MOVWF   duty_cycle_upper 
-
-
-
-    CALL    SIGNAL 
-
-    CALL     DELAY 
-
-
-
-    MOVLW   111011 
-
-    MOVWF   duty_cycle_upper 
-
-
-
-    CALL    SIGNAL 
-
-    CALL     DELAY 
-
-
-
-    MOVLW   1001 
-
-    MOVWF   duty_cycle_upper 
-
-
-
-    CALL    SIGNAL 
-
-    CALL     DELAY 
-
-
-
-    MOVLW   101 
-
-    MOVWF   duty_cycle_upper 
-
-
-
-    CALL    SIGNAL 
-
-    CALL     DELAY 
-
-
-
-    MOVLW   110011 
-
-    MOVWF   duty_cycle_upper 
-
-
-
-    CALL    SIGNAL 
-
-    CALL     DELAY 
-
-
-
-    MOVLW   1101001 
-
-    MOVWF   duty_cycle_upper 
-
-
-
-    CALL    SIGNAL 
-
-    CALL     DELAY 
-
-
-
-    MOVLW   1110100 
-
-    MOVWF   duty_cycle_upper 
-
-
-
-    CALL    SIGNAL 
-
-    CALL     DELAY 
-
-
-
-    MOVLW   1001100 
-
-    MOVWF   duty_cycle_upper 
-
-
-
-    CALL    SIGNAL 
-
-    CALL     DELAY 
-
-
-
-    MOVLW   10100 
-
-    MOVWF   duty_cycle_upper 
-
-
-
-    CALL    SIGNAL 
-
-    CALL     DELAY 
-
-
-
-    MOVLW   0 
-
-    MOVWF   duty_cycle_upper 
-
-
-
-    CALL    SIGNAL 
-
-    CALL     DELAY 
-
-
-
-    MOVLW   100011 
-
-    MOVWF   duty_cycle_upper 
-
-
-
-    CALL    SIGNAL 
-
-    CALL     DELAY 
-
-
-
-    MOVLW   1011100 
-
-    MOVWF   duty_cycle_upper 
-
-
-
-    CALL    SIGNAL 
-
-    CALL     DELAY 
-
-
-
-    MOVLW   1110111 
-
-    MOVWF   duty_cycle_upper 
-
-
-
-    CALL    SIGNAL 
-
-    CALL     DELAY 
-
-
-
-    MOVLW   1011011 
-
-    MOVWF   duty_cycle_upper 
-
-
-
-    CALL    SIGNAL 
-
-    CALL     DELAY 
-
-
-
-    MOVLW   100010 
-
-    MOVWF   duty_cycle_upper 
-
-
-
-    CALL    SIGNAL 
-
-    CALL     DELAY 
-
-
-
-    MOVLW   0 
-
-    MOVWF   duty_cycle_upper 
-
-
-
-    CALL    SIGNAL 
-
-    CALL     DELAY 
-
-
-
-    MOVLW   10101 
-
-    MOVWF   duty_cycle_upper 
-
-
-
-    CALL    SIGNAL 
-
-    CALL     DELAY 
-
-
-
-    MOVLW   1001101 
-
-    MOVWF   duty_cycle_upper 
-
-
-
-    CALL    SIGNAL 
-
-    CALL     DELAY 
-
-
-
-    MOVLW   1110101 
-
-    MOVWF   duty_cycle_upper 
-
-
-
-    CALL    SIGNAL 
-
-    CALL     DELAY 
-
-
-
-    MOVLW   1101000 
-
-    MOVWF   duty_cycle_upper 
-
-
-
-    CALL    SIGNAL 
-
-    CALL     DELAY 
-
-
-
-    MOVLW   110010 
-
-    MOVWF   duty_cycle_upper 
-
-
-
-    CALL    SIGNAL 
-
-    CALL     DELAY 
-
-
-
-    MOVLW   101 
-
-    MOVWF   duty_cycle_upper 
-
-
-
-    CALL    SIGNAL 
-
-    CALL     DELAY 
-
-
-
-    MOVLW   1010 
-
-    MOVWF   duty_cycle_upper 
-
-
-
-    CALL    SIGNAL 
-
-    CALL     DELAY 
-
-
-
-    MOVLW   111100 
-
-    MOVWF   duty_cycle_upper 
-
-
-
-    CALL    SIGNAL 
-
-    CALL     DELAY 
-
-
-
-    MOVLW   1101110 
-
-    MOVWF   duty_cycle_upper 
-
-
-
-    CALL    SIGNAL 
-
-    CALL     DELAY 
-
-
-
-    MOVLW   1110001 
-
-    MOVWF   duty_cycle_upper 
-
-
-
-    CALL    SIGNAL 
-
-    CALL     DELAY 
-
-
-
-    MOVLW   1000011 
-
-    MOVWF   duty_cycle_upper 
-
-
-
-    CALL    SIGNAL 
-
-    CALL     DELAY 
-
-
-
-    MOVLW   1101 
-
-    MOVWF   duty_cycle_upper 
-
-
-
-    CALL    SIGNAL 
-
-    CALL     DELAY 
-
-
-
-    MOVLW   10 
-
-    MOVWF   duty_cycle_upper 
-
-
-
-    CALL    SIGNAL 
-
-    CALL     DELAY 
-
-
-
-    MOVLW   101100 
-
-    MOVWF   duty_cycle_upper 
-
-
-
-    CALL    SIGNAL 
-
-    CALL     DELAY 
-
-
-
-    MOVLW   1100011 
-
-    MOVWF   duty_cycle_upper 
-
-
-
-    CALL    SIGNAL 
-
-    CALL     DELAY 
-
-
-
-    MOVLW   1110110 
-
-    MOVWF   duty_cycle_upper 
-
-
-
-    CALL    SIGNAL 
-
-    CALL     DELAY 
-
-
-
-    MOVLW   1010011 
-
-    MOVWF   duty_cycle_upper 
-
-
-
-    CALL    SIGNAL 
-
-    CALL     DELAY 
-
-
-
-    MOVLW   11010 
-
-    MOVWF   duty_cycle_upper 
-
-
-
-    CALL    SIGNAL 
-
-    CALL     DELAY 
-
-
-
-    MOVLW   0 
-
-    MOVWF   duty_cycle_upper 
-
-
-
-    CALL    SIGNAL 
-
-    CALL     DELAY 
-
-
-
-    MOVLW   11100 
-
-    MOVWF   duty_cycle_upper 
-
-
-
-    CALL    SIGNAL 
-
-    CALL     DELAY 
-
-
-
-    MOVLW   1010101 
-
-    MOVWF   duty_cycle_upper 
-
-
-
-    CALL    SIGNAL 
-
-    CALL     DELAY 
-
-
-
-    MOVLW   1110111 
-
-    MOVWF   duty_cycle_upper 
-
-
-
-    CALL    SIGNAL 
-
-    CALL     DELAY 
-
-
-
-    MOVLW   1100001 
-
-    MOVWF   duty_cycle_upper 
-
-
-
-    CALL    SIGNAL 
-
-    CALL     DELAY 
-
-
-
-    MOVLW   101001 
-
-    MOVWF   duty_cycle_upper 
-
-
-
-    CALL    SIGNAL 
-
-    CALL     DELAY 
-
-
-
-    MOVLW   10 
-
-    MOVWF   duty_cycle_upper 
-
-
-
-    CALL    SIGNAL 
-
-    CALL     DELAY 
-
-
-
-    MOVLW   1111 
-
-    MOVWF   duty_cycle_upper 
-
-
-
-    CALL    SIGNAL 
-
-    CALL     DELAY 
-
-
-
-    MOVLW   1000101 
-
-    MOVWF   duty_cycle_upper 
-
-
-
-    CALL    SIGNAL 
-
-    CALL     DELAY 
+    
+    MOVLW   0x63     	    ; 0b11111100
+    MOVWF   PR2
 
     
+    MOVLW    0x32 
+
+MOVWF    duty_cycle_upper 
+
+CALL     SIGNAL 
+
+CALL     DELAY 
+
+ 
+
+;MOVLW    0x3c 
+MOVLW    0x55
+MOVWF    duty_cycle_upper 
+
+CALL     SIGNAL 
+
+CALL     DELAY 
+
+ 
+
+MOVLW    0x45 
+
+MOVWF    duty_cycle_upper 
+
+CALL     SIGNAL 
+
+CALL     DELAY 
+
+ 
+
+MOVLW    0x4e 
+
+MOVWF    duty_cycle_upper 
+
+CALL     SIGNAL 
+
+CALL     DELAY 
+
+ 
+
+MOVLW    0x55 
+
+MOVWF    duty_cycle_upper 
+
+CALL     SIGNAL 
+
+CALL     DELAY 
+
+ 
+
+MOVLW    0x5b 
+
+MOVWF    duty_cycle_upper 
+
+CALL     SIGNAL 
+
+CALL     DELAY 
+
+ 
+
+MOVLW    0x60 
+
+MOVWF    duty_cycle_upper 
+
+CALL     SIGNAL 
+
+CALL     DELAY 
+
+ 
+
+MOVLW    0x63 
+
+MOVWF    duty_cycle_upper 
+
+CALL     SIGNAL 
+
+CALL     DELAY 
+
+ 
+
+MOVLW    0x64 
+
+MOVWF    duty_cycle_upper 
+
+CALL     SIGNAL 
+
+CALL     DELAY 
+
+ 
+
+MOVLW    0x63 
+
+MOVWF    duty_cycle_upper 
+
+CALL     SIGNAL 
+
+CALL     DELAY 
+
+ 
+
+MOVLW    0x60 
+
+MOVWF    duty_cycle_upper 
+
+CALL     SIGNAL 
+
+CALL     DELAY 
+
+ 
+
+MOVLW    0x5b 
+
+MOVWF    duty_cycle_upper 
+
+CALL     SIGNAL 
+
+CALL     DELAY 
+
+ 
+
+MOVLW    0x55 
+
+MOVWF    duty_cycle_upper 
+
+CALL     SIGNAL 
+
+CALL     DELAY 
+
+ 
+
+MOVLW    0x4e 
+
+MOVWF    duty_cycle_upper 
+
+CALL     SIGNAL 
+
+CALL     DELAY 
+
+ 
+
+MOVLW    0x45 
+
+MOVWF    duty_cycle_upper 
+
+CALL     SIGNAL 
+
+CALL     DELAY 
+
+ 
+
+MOVLW    0x3c 
+
+MOVWF    duty_cycle_upper 
+
+CALL     SIGNAL 
+
+CALL     DELAY 
+
+ 
+
+MOVLW    0x32 
+
+MOVWF    duty_cycle_upper 
+
+CALL     SIGNAL 
+
+CALL     DELAY 
+
+ 
+
+MOVLW    0x28 
+
+MOVWF    duty_cycle_upper 
+
+CALL     SIGNAL 
+
+CALL     DELAY 
+
+ 
+
+MOVLW    0x1f 
+
+MOVWF    duty_cycle_upper 
+
+CALL     SIGNAL 
+
+CALL     DELAY 
+
+ 
+
+MOVLW    0x16 
+
+MOVWF    duty_cycle_upper 
+
+CALL     SIGNAL 
+
+CALL     DELAY 
+
+ 
+
+MOVLW    0xe 
+
+MOVWF    duty_cycle_upper 
+
+CALL     SIGNAL 
+
+CALL     DELAY 
+
+ 
+
+MOVLW    0x8 
+
+MOVWF    duty_cycle_upper 
+
+CALL     SIGNAL 
+
+CALL     DELAY 
+
+ 
+
+MOVLW    0x3 
+
+MOVWF    duty_cycle_upper 
+
+CALL     SIGNAL 
+
+CALL     DELAY 
+
+ 
+
+MOVLW    0x1 
+
+MOVWF    duty_cycle_upper 
+
+CALL     SIGNAL 
+
+CALL     DELAY 
+
+ 
+
+MOVLW    0x0 
+
+MOVWF    duty_cycle_upper 
+
+CALL     SIGNAL 
+
+CALL     DELAY 
+
+ 
+
+MOVLW    0x1 
+
+MOVWF    duty_cycle_upper 
+
+CALL     SIGNAL 
+
+CALL     DELAY 
+
+ 
+
+MOVLW    0x3 
+
+MOVWF    duty_cycle_upper 
+
+CALL     SIGNAL 
+
+CALL     DELAY 
+
+ 
+
+MOVLW    0x8 
+
+MOVWF    duty_cycle_upper 
+
+CALL     SIGNAL 
+
+CALL     DELAY 
+
+ 
+
+MOVLW    0xe 
+
+MOVWF    duty_cycle_upper 
+
+CALL     SIGNAL 
+
+CALL     DELAY 
+
+ 
+
+MOVLW    0x16 
+
+MOVWF    duty_cycle_upper 
+
+CALL     SIGNAL 
+
+CALL     DELAY 
+
+ 
+
+MOVLW    0x1f 
+
+MOVWF    duty_cycle_upper 
+
+CALL     SIGNAL 
+
+CALL     DELAY 
+
+ 
+
+MOVLW    0x28 
+
+MOVWF    duty_cycle_upper 
+
+CALL     SIGNAL 
+
+CALL     DELAY 
+
     
     call	keypad_read_row
     call	DELAY
@@ -923,15 +551,40 @@ Fsharp:
     
     	
 	
-    
-DELAY:
-	movlw	0x90		    ; 144 operations = 9us
-	movwf	delay_counter
-	bra	DELAY_SEQ
-DELAY_SEQ:
+ DELAY:
+	movlw	0x20		       ; 144 operations = 9us
+	movwf	delay_counter, A
+	bra	DELAY_SEQ1
+DELAY_SEQ1:
 	decfsz	delay_counter, A	; decrement until zero
-	bra	DELAY_SEQ
+	bra	DELAY_SEQ1
+	
+	movlw	0x01		    ; 144 operations = 9us
+	movwf	delay_counter, A
+	bra	DELAY_SEQ2
+DELAY_SEQ2:
+	decfsz	delay_counter, A	; decrement until zero
+	bra	DELAY_SEQ2
+;	
+;	movlw	0x01		    ; 144 operations = 9us
+;	movwf	delay_counter
+;	bra	DELAY_SEQ3
+;DELAY_SEQ3:
+;	decfsz	delay_counter, A	; decrement until zero
+;	bra	DELAY_SEQ3	
+;	
+	
+	
 	return
+ 
+;DELAY:
+;	movlw	0xff		    ; 144 operations = 9us
+;	movwf	delay_counter
+;	bra	DELAY_SEQ
+;DELAY_SEQ:
+;	decfsz	delay_counter, A	; decrement until zero
+;	bra	DELAY_SEQ
+;	return
 
 
     bra	Fsharp
