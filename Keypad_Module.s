@@ -25,7 +25,7 @@ rowvals:	ds	  1
 columnvals:	ds	  1
 delay_counter:	ds	  1
 	
- psect	pwm_code, class=CODE
+
     
 
  
@@ -48,7 +48,7 @@ Fsharp_Table:
  
 
     
-    
+ psect	pwm_code, class=CODE
     
  
  KEYPAD_SETUP:
