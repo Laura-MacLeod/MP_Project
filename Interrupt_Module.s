@@ -11,14 +11,14 @@ delay_count:	    ds	1
     
 
 INT_ON:
-	bsf	TMR2IE		; Enable timer0 interrupt
+	bsf	TMR2IE		; Enable timer2 interrupt
 	bsf	GIE		; Enable all interrupts
 	
 	return
 	
 	
 INT_OFF:
-	bcf	TMR2IE		; Disable timer0 interrupt
+	bcf	TMR2IE		; Disable timer2 interrupt
 	bcf	GIE		; Disable all interrupts
 	
 	return
