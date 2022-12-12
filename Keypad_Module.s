@@ -251,7 +251,11 @@ NO_BUTTON:
 FSHARP:			    ; 740 Hz
     
 	MOVLW   0x63				; Set period
-	MOVWF   PR2		    
+	MOVWF   PR2	
+	
+	MOVLW    0x32 
+	MOVWF    duty_cycle_upper 
+	CALL     SIGNAL 
 
 	lfsr	0, Fsharp_Array			; Load FSR0 with address in RAM	
 	movlw	low highword(Fsharp_Table)	; address of data in PM
