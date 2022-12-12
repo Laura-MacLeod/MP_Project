@@ -1,23 +1,55 @@
 	#include <xc.inc>
 	
 
-global	Fsharp
 global  KEYPAD_SETUP, keypad_read_row, keypad_read_column, combine, interpret
-extrn	SIGNAL, duty_cycle_upper
+	
+extrn	SIGNAL, duty_cycle_upper, INT_ON, INT_OFF
+	
+	
+	
+ 
+psect	udata_bank4 ; reserve data anywhere in RAM (here at 0x400)
+    
+Fsharp_Array:    ds 0x80 ; reserve 128 bytes for message data (MUST BE RESERVED BEFORE UDATA_ACS OTHERWISE INSUFFICIENT SPACE
+    
+    
+	
+
 psect	udata_acs
-delay_count:	ds 1
-row:	    ds    1	    ; reserve 1 byte for variable UART_counter
-column:	    ds    1
-value:	    ds	  1
-rowvals:    ds	  1
-columnvals: ds	  1
-delay_counter:	    ds	  1
-compare_value:	    ds	  1
+	
+delay_count:	ds	  1
+row:		ds	  1	    ; reserve 1 byte for variable UART_counter
+column:		ds	  1
+value:		ds	  1
+rowvals:	ds	  1
+columnvals:	ds	  1
+delay_counter:	ds	  1
 	
  psect	pwm_code, class=CODE
     
 
  
+psect	data    
+	
+	; ******* myTable, data in programme memory, and its length *****
+Fsharp_Table:
+	db	0x32, 0x3c, 0x45, 0x4e, 0x55, 0x5b, 0x60, 0x63, 0x64, 0x63, 0x60, 0x5b, 0x55, 0x4e, 0x45, 0x3c, 0x32, 0x28, 0x1f, 0x16, 0xe, 0x8, 0x3, 0x1, 0x0, 0x1, 0x3, 0x8, 0xe, 0x16, 0x1f, 0x28
+					; message, plus carriage return
+	Fsharp_Table_Len   EQU	0x20	; length of data
+   
+	align	2
+
+; MORE TABLES HERE
+    
+; MORE TABLES HERE
+	
+; MORE TABLES HERE
+ 
+ 
+
+    
+    
+    
  
  KEYPAD_SETUP:
 	movlb	15	    ;go to BSR 15
@@ -67,15 +99,6 @@ keypad_read_column:		    ; 1 op
 	movwf	value
 	return
 
- compare_combine:		    ; 1 op
-	movf	column, W	    ; 1 op
-	iorwf	row, W		    ; 1 op           ;Combines columns with rows and move to W
-	movwf	compare_value	    ; 1 op
-	return			    ; 1 op
-	
-	
-	
-	
 	
 
     
@@ -88,7 +111,123 @@ delay:
 	bra	delay
 	return
 
- 
+	
+	
+interpret:
+	movlw	0xff		    ;NO BUTTON PRESSED
+	cpfseq	value		    
+	bra	next1
+	call	NO_BUTTON
+	retlw	0x00		    ;RETURN NULL
+
+next1:
+	movlw	0x77	    ;ROW 4 COLUMN 4 PRESSED
+	cpfseq	value		    
+	bra	next2
+	call	FSHARP
+	retlw	'c'		    ;RETURN 'C'
+next2:
+	movlw	0xB7	    ;ROW 3 COLUMN 4 PRESSED
+	cpfseq	value		    
+	bra	next3
+	retlw	'd'		    ;RETURN 'D'
+
+next3:
+	movlw	0x7B	    ;ROW 4 COLUMN 3 PRESSED
+	cpfseq	value		    
+	bra	next4
+	retlw	'b'		    ;RETURN 'B'
+
+next4:
+	movlw	0xD7	    ;ROW 2 COLUMN 4 PRESSED
+	cpfseq	value		    
+	bra	next5
+	retlw	'e'		    ;RETURN 'E'
+
+next5:
+	movlw	0x7D	    ;ROW 4 COLUMN 2 PRESSED
+	cpfseq	value		    
+	bra	next6
+	retlw	'0'		    ;RETURN '0'
+
+next6:
+	movlw	0xBB	    ;ROW 3 COLUMN 3 PRESSED
+	cpfseq	value		    
+	bra	next7
+	retlw	'9'		    ;RETURN '9'
+
+next7:
+	movlw	0xBD	    ;ROW 3 COLUMN 2 PRESSED
+	cpfseq	value		    
+	bra	next8
+	retlw	'8'		    ;RETURN '8'
+
+next8:
+	movlw	0xdb	    ;ROW 2 COLUMN 3 PRESSED
+	cpfseq	value		    
+	bra	next9
+	nop
+	retlw	'6'		    ;RETURN '6'
+	
+	return
+
+next9:
+	movlw	0x7E	    ;ROW 4 COLUMN 1 PRESSED
+	cpfseq	value		    
+	bra	next10
+	retlw	'a'		    ;RETURN 'A'
+
+next10:
+	movlw	0xE7	    ;ROW 1 COLUMN 4 PRESSED
+	cpfseq	value		    
+	bra	next11
+	retlw	'f'		    ;RETURN 'F'
+
+next11:
+	movlw	0xDD	    ;ROW 2 COLUMN 2 PRESSED
+	cpfseq	value		    
+	bra	next12
+	retlw	'5'		    ;RETURN '5'
+
+next12:
+	movlw	0xBE	    ;ROW 3 COLUMN 1 PRESSED
+	cpfseq	value		    
+	bra	next13
+	retlw	'7'		    ;RETURN '7'
+
+next13:
+	movlw	0xEB	    ;ROW 1 COLUMN 3 PRESSED
+	cpfseq	value		    
+	bra	next14
+	retlw	'3'		    ;RETURN '3'
+
+next14:
+	movlw	0xED	    ;ROW 1 COLUMN 2 PRESSED
+	cpfseq	value		    
+	bra	next15
+	retlw	'2'		    ;RETURN '2'
+
+next15:
+	movlw	0xDE	    ;ROW 2 COLUMN 1 PRESSED
+	cpfseq	value		    
+	bra	next16
+	retlw	'4'		    ;RETURN '4'
+
+next16:
+	movlw	0xEE	    ;ROW 1 COLUMN 1 PRESSED
+	cpfseq	value		    
+	bra	errorfunc
+	retlw	'1'		    ;RETURN '1'
+
+errorfunc:
+	call	NO_BUTTON
+	retlw	0xff		    ;ERROR
+	return	
+	
+	
+	
+	
+		
 	
 	
 	
@@ -101,364 +240,36 @@ delay:
 	
 	
 	
+	
+NO_BUTTON:
+	
+	call	INT_OFF
+	return
+	
+
  
-Fsharp:			    ; 740 Hz
+FSHARP:			    ; 740 Hz
     
-    MOVLW   0x63     	    ; 1 op
-    MOVWF   PR2		    ; 1 op
+	MOVLW   0x63				; Set period
+	MOVWF   PR2		    
 
+	lfsr	0, Fsharp_Array			; Load FSR0 with address in RAM	
+	movlw	low highword(Fsharp_Table)	; address of data in PM
+	movwf	TBLPTRU, A			; load upper bits to TBLPTRU
+	movlw	high(Fsharp_Table)		; address of data in PM
+	movwf	TBLPTRH, A			; load high byte to TBLPTRH
+	movlw	low(Fsharp_Table)		; address of data in PM
+	movwf	TBLPTRL, A			; load low byte to TBLPTRL
+
+	call	INT_ON				; Turn on interrupt, duty cycle starts being varied
     
-MOVLW    0x32		    ; 1 op
-
-MOVWF    duty_cycle_upper   ; 1 op
-
-CALL     SIGNAL		    ; 3 op
-
-CALL     DELAY		    ; ?
-
- 
-
-;MOVLW    0x3c 
-MOVLW    0x55
-MOVWF    duty_cycle_upper 
-
-CALL     SIGNAL 
-
-CALL     DELAY 
-
- 
-
-MOVLW    0x45 
-
-MOVWF    duty_cycle_upper 
-
-CALL     SIGNAL 
-
-CALL     DELAY 
-
- 
-
-MOVLW    0x4e 
-
-MOVWF    duty_cycle_upper 
-
-CALL     SIGNAL 
-
-CALL     DELAY 
-
- 
-
-MOVLW    0x55 
-
-MOVWF    duty_cycle_upper 
-
-CALL     SIGNAL 
-
-CALL     DELAY 
-
- 
-
-MOVLW    0x5b 
-
-MOVWF    duty_cycle_upper 
-
-CALL     SIGNAL 
-
-CALL     DELAY 
-
- 
-
-MOVLW    0x60 
-
-MOVWF    duty_cycle_upper 
-
-CALL     SIGNAL 
-
-CALL     DELAY 
-
- 
-
-MOVLW    0x63 
-
-MOVWF    duty_cycle_upper 
-
-CALL     SIGNAL 
-
-CALL     DELAY 
-
- 
-
-MOVLW    0x64 
-
-MOVWF    duty_cycle_upper 
-
-CALL     SIGNAL 
-
-CALL     DELAY 
-
- 
-
-MOVLW    0x63 
-
-MOVWF    duty_cycle_upper 
-
-CALL     SIGNAL 
-
-CALL     DELAY 
-
- 
-
-MOVLW    0x60 
-
-MOVWF    duty_cycle_upper 
-
-CALL     SIGNAL 
-
-CALL     DELAY 
-
- 
-
-MOVLW    0x5b 
-
-MOVWF    duty_cycle_upper 
-
-CALL     SIGNAL 
-
-CALL     DELAY 
-
- 
-
-MOVLW    0x55 
-
-MOVWF    duty_cycle_upper 
-
-CALL     SIGNAL 
-
-CALL     DELAY 
-
- 
-
-MOVLW    0x4e 
-
-MOVWF    duty_cycle_upper 
-
-CALL     SIGNAL 
-    
-CALL     DELAY 
-
- 
-
-MOVLW    0x45 
-
-MOVWF    duty_cycle_upper 
-
-CALL     SIGNAL 
-
-CALL     DELAY 
-
- 
-
-MOVLW    0x3c 
-
-MOVWF    duty_cycle_upper 
-
-CALL     SIGNAL 
-
-CALL     DELAY 
-
- 
-
-MOVLW    0x32 
-
-MOVWF    duty_cycle_upper 
-
-CALL     SIGNAL 
-
-CALL     DELAY 
-
- 
-
-MOVLW    0x28 
-
-MOVWF    duty_cycle_upper 
-
-CALL     SIGNAL 
-
-CALL     DELAY 
-
- 
-
-MOVLW    0x1f 
-
-MOVWF    duty_cycle_upper 
-
-CALL     SIGNAL 
-
-CALL     DELAY 
-
- 
-
-MOVLW    0x16 
-
-MOVWF    duty_cycle_upper 
-
-CALL     SIGNAL 
-
-CALL     DELAY 
-
- 
-
-MOVLW    0xe 
-
-MOVWF    duty_cycle_upper 
-
-CALL     SIGNAL 
-
-CALL     DELAY 
-
- 
-
-MOVLW    0x8 
-
-MOVWF    duty_cycle_upper 
-
-CALL     SIGNAL 
-
-CALL     DELAY 
-
- 
-
-MOVLW    0x3 
-
-MOVWF    duty_cycle_upper 
-
-CALL     SIGNAL 
-
-CALL     DELAY 
-
- 
-
-MOVLW    0x1 
-
-MOVWF    duty_cycle_upper 
-
-CALL     SIGNAL 
-
-CALL     DELAY 
-
- 
-
-MOVLW    0x0 
-
-MOVWF    duty_cycle_upper 
-
-CALL     SIGNAL 
-
-CALL     DELAY 
-
- 
-
-MOVLW    0x1 
-
-MOVWF    duty_cycle_upper 
-
-CALL     SIGNAL 
-
-CALL     DELAY 
-
- 
-
-MOVLW    0x3 
-
-MOVWF    duty_cycle_upper 
-
-CALL     SIGNAL 
-
-CALL     DELAY 
-
- 
-
-MOVLW    0x8 
-
-MOVWF    duty_cycle_upper 
-
-CALL     SIGNAL 
-
-CALL     DELAY 
-
- 
-
-MOVLW    0xe 
-
-MOVWF    duty_cycle_upper 
-
-CALL     SIGNAL 
-
-CALL     DELAY 
-
- 
-
-MOVLW    0x16 
-
-MOVWF    duty_cycle_upper 
-
-CALL     SIGNAL 
-
-CALL     DELAY 
-
- 
-
-MOVLW    0x1f 
-
-MOVWF    duty_cycle_upper 
-
-CALL     SIGNAL 
-
-CALL     DELAY 
-
- 
-
-MOVLW    0x28 
-
-MOVWF    duty_cycle_upper 
-
-CALL     SIGNAL 
-
-CALL     DELAY
-    
-;CALL	DELAY_CHECK   
-    
-    
-;    
-;    call	keypad_read_row		    ; 153 ops		    ;
-;    call	keypad_read_column	    ; 153 ops
-;    call	compare_combine		    ; 5 op
-;    
-;    movf	value, W		    ; 1 op
-;    cpfseq	compare_value		    ; 1 op
-    return
+	return
     
     
     
-goto		Fsharp			    ; 1 op
 
 
-    	
 
-    
-DELAY_CHECK:
-    
-    call	keypad_read_row		    ; 153 ops		    ;
-    call	keypad_read_column	    ; 153 ops
-    call	compare_combine		    ; 5 op
-    
-    movf	value, W		    ; 1 op
-    cpfseq	compare_value		    ; 1 op
-    bra		interpret
-    return
-    
-    
-    
     
     
     
@@ -490,7 +301,4 @@ DELAY_SEQ2:
 	return
  
 
-
-    bra	Fsharp
-    
 END
