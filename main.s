@@ -4,7 +4,7 @@
 EXTRN	duty_cycle_upper, duty_cycle_lower
 EXTRN	PWM_INIT, TIMER_INIT, CLOCK_INIT, PORT_INIT, SIGNAL, KEYPAD_SETUP, keypad_read_row, keypad_read_column, combine, interpret	
 
-extrn	INT_HIGH
+extrn	INT_HIGH, INT_ON
 	
 GLOBAL	Countdown
 	
@@ -42,18 +42,38 @@ INIT:
     CALL    PWM_INIT
     CALL    KEYPAD_SETUP
     
+    bsf	GIE		; Enable all interrupts
+    bsf	TMR0IE		; Enable timer2 interrupt
+    
+    MOVLW   0x23				; Set period
+    MOVWF   PR2	
+ 
+
+    
     movlw   0X20
     movwf   Countdown		; Initialise countdown depending on number of samples/periods per sinusoid
     
     GOTO    MAIN
     
     MAIN:
+    
+;	CALL	INT_ON
+    
 
-	call	keypad_read_row
-	call	keypad_read_column
-	call	combine
-	call	interpret
+
+    MOVLW    0x05 
+    MOVWF    duty_cycle_upper 
+    CALL     SIGNAL
 	
+    
+
+
+;	call	keypad_read_row
+;	call	keypad_read_column
+;	call	combine
+;	call	interpret
+;	CALL	INT_ON
+;	
 	bra	MAIN
 	
 
