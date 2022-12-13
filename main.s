@@ -45,12 +45,14 @@ INIT:
     bsf	GIE		; Enable all interrupts
     bsf	TMR0IE		; Enable timer2 interrupt
     
-    MOVLW   0x23				; Set period
-    MOVWF   PR2	
- 
-
+    MOVLW    0x65 
+    MOVWF    duty_cycle_upper 
+    CALL     SIGNAL
     
-    movlw   0X20
+ 
+;    CALL	INT_ON
+    
+    movlw   0X10
     movwf   Countdown		; Initialise countdown depending on number of samples/periods per sinusoid
     
     GOTO    MAIN
@@ -61,18 +63,18 @@ INIT:
     
 
 
-    MOVLW    0x05 
-    MOVWF    duty_cycle_upper 
-    CALL     SIGNAL
+
+;	
+;    MOVLW   0X63	    ; 0b11111111
+;    MOVWF   PR2
+;    
+
+
+	call	keypad_read_row
+	call	keypad_read_column
+	call	combine
+	call	interpret
 	
-    
-
-
-;	call	keypad_read_row
-;	call	keypad_read_column
-;	call	combine
-;	call	interpret
-;	CALL	INT_ON
 ;	
 	bra	MAIN
 	
