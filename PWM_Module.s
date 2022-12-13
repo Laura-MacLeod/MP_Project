@@ -48,13 +48,13 @@ TIMER_INIT:
     CLRF    TMR2	    ; Clearing timer2/counter
     CLRF    TMR0	    ; Clearing timer2/counter
     
-    MOVLW   0X76	    ; 0b11111111
+    MOVLW   0X31	    ; 0b11111111
     MOVWF   PR2		    ; Set period of signal,  PR2 = (Fosc/(4*PWMfreq*prescale)) - 1; Equation 19-1
     
     MOVLW   0xFC	    ; 0b11111100
     MOVWF   T2CON	    ; Timer control register - <6:3> postscale control, <2> timer on/off, <1:0> prescale control
     
-    MOVLW   0xC3	    ; 0b11111100
+    MOVLW   0xc0	    ; 0b11111100
     MOVWF   T0CON	    ; Timer control register - <6:3> postscale control, <2> timer on/off, <1:0> prescale control
     
     RETURN
@@ -82,8 +82,9 @@ PWM_INIT:
  
 SIGNAL:
     ; Duty cycle value should be prewritten to 'duty_cycle'
-    
-    MOVFF   duty_cycle_upper, CCPR1L	    ;set new duty cycle (8 MSBs)
+    NOP
+    MOVF    duty_cycle_upper, W, A
+    MOVWF   CCPR1L, 1	    ;set new duty cycle (8 MSBs)
     ;MOVFF   duty_cycle_lower, CCP1CON	    ;set new duty cycle (2 LSBs), might not be necessary
     
     RETURN
