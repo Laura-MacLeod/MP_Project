@@ -4,7 +4,6 @@
 EXTRN	duty_cycle_upper, duty_cycle_lower
 EXTRN	PWM_INIT, TIMER_INIT, CLOCK_INIT, PORT_INIT, SIGNAL	
 extrn	keypad_setup, keypad_read_row, keypad_read_column, combine, interpret
-extrn	Fsharp
 psect	udata_acs
 	
 delay_counter1:	    ds 1
@@ -40,14 +39,9 @@ INIT:
     GOTO    start
     
 start:
-    nop
 	call	keypad_read_row
-;	call	DELAY1
-	nop
 	call	keypad_read_column
 	call	combine
-
-	nop
 	call	interpret
 	
 	bra	start
@@ -56,7 +50,7 @@ start:
 
 DELAY1:
 	movlw	0x90		    ; 144 operations = 9us
-	movwf	delay_counter1
+	movwf	delay_counter1, A
 	bra	DELAY1_SEQ
 DELAY1_SEQ:
 	decfsz	delay_counter1, A	; decrement until zero
