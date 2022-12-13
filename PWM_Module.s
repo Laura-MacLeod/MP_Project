@@ -17,6 +17,13 @@ PORT_INIT:
 
     BCF	    TRISC, 2	    ; Set P1A/RC2 pin to output
     
+;	clrf	TRISJ, A	; Set PORTJ as all outputs
+;	clrf	LATJ, A		; Clear PORTJ outputs
+;	movlw	10000111B	; Set timer0 to 16-bit, Fosc/4/256
+;	movwf	T0CON, A	; = 62.5KHz clock rate, approx 1sec rollover
+;	bsf	TMR0IE		; Enable timer0 interrupt
+;	bsf	GIE		; Enable all interrupts
+    
     RETURN
     
     
@@ -39,12 +46,16 @@ CLOCK_INIT:
 TIMER_INIT:
     
     CLRF    TMR2	    ; Clearing timer2/counter
+    CLRF    TMR0	    ; Clearing timer2/counter
     
-    MOVLW   01110110	    ; 0b11111111
+    MOVLW   0X76	    ; 0b11111111
     MOVWF   PR2		    ; Set period of signal,  PR2 = (Fosc/(4*PWMfreq*prescale)) - 1; Equation 19-1
     
     MOVLW   0xFC	    ; 0b11111100
     MOVWF   T2CON	    ; Timer control register - <6:3> postscale control, <2> timer on/off, <1:0> prescale control
+    
+    MOVLW   0xC3	    ; 0b11111100
+    MOVWF   T0CON	    ; Timer control register - <6:3> postscale control, <2> timer on/off, <1:0> prescale control
     
     RETURN
     
