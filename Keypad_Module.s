@@ -3,7 +3,9 @@
 
 global  keypad_setup, keypad_read_row, keypad_read_column, combine, interpret
 	
-extrn	SIGNAL, duty_cycle_upper, Fsharp
+extrn	SIGNAL, duty_cycle_upper
+extrn	A_note, Asharp, B_note, C_note, Csharp, D_note, Dsharp, E_note
+
 	
 psect	udata_acs
 delay_count:	ds 1
@@ -82,7 +84,7 @@ next1:
 	movlw	0x77	    ;ROW 4 COLUMN 4 PRESSED
 	cpfseq	value		    
 	bra	next2
-	call	Fsharp
+;	call	Fsharp
 	retlw	'c'		    ;RETURN 'C'
 next2:
 	movlw	0xB7	    ;ROW 3 COLUMN 4 PRESSED
@@ -118,13 +120,14 @@ next7:
 	movlw	0xBD	    ;ROW 3 COLUMN 2 PRESSED
 	cpfseq	value		    
 	bra	next8
+	call	E_note
 	retlw	'8'		    ;RETURN '8'
 
 next8:
 	movlw	0xdb	    ;ROW 2 COLUMN 3 PRESSED
 	cpfseq	value		    
 	bra	next9
-	nop
+	call	D_note
 	retlw	'6'		    ;RETURN '6'
 	
 	return
@@ -145,36 +148,42 @@ next11:
 	movlw	0xDD	    ;ROW 2 COLUMN 2 PRESSED
 	cpfseq	value		    
 	bra	next12
+	call	Csharp
 	retlw	'5'		    ;RETURN '5'
 
 next12:
 	movlw	0xBE	    ;ROW 3 COLUMN 1 PRESSED
 	cpfseq	value		    
 	bra	next13
+	call	Dsharp
 	retlw	'7'		    ;RETURN '7'
 
 next13:
 	movlw	0xEB	    ;ROW 1 COLUMN 3 PRESSED
 	cpfseq	value		    
 	bra	next14
+	call	B_note
 	retlw	'3'		    ;RETURN '3'
 
 next14:
 	movlw	0xED	    ;ROW 1 COLUMN 2 PRESSED
 	cpfseq	value		    
 	bra	next15
+	call	Asharp
 	retlw	'2'		    ;RETURN '2'
 
 next15:
 	movlw	0xDE	    ;ROW 2 COLUMN 1 PRESSED
 	cpfseq	value		    
 	bra	next16
+	call	C_note
 	retlw	'4'		    ;RETURN '4'
 
 next16:
 	movlw	0xEE	    ;ROW 1 COLUMN 1 PRESSED
 	cpfseq	value		    
 	bra	errorfunc
+	call	A_note
 	retlw	'1'		    ;RETURN '1'
 
 errorfunc:
