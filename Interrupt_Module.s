@@ -11,8 +11,9 @@ delay_count:	    ds	1
     
 
 INT_ON:
-	bsf	TMR2IE		; Enable timer2 interrupt
 	bsf	GIE		; Enable all interrupts
+	bsf	TMR2IE		; Enable timer2 interrupt
+	
 	
 	return
 	
@@ -23,12 +24,19 @@ INT_OFF:
 	
 	return
  
- 
+; INT_HIGH:
+;
+;	btfss	TMR0IF		; check that this is timer0 interrupt
+;	retfie	f		; if not then return
+;	incf	LATJ, F, A	; increment PORTJ
+;	bcf	TMR0IF		; clear interrupt flag
+;	retfie	f		; fast return from interrupt
 	
-	
+
 INT_HIGH:	
-	btfss	TMR2IF		; check that this is timer2 interrupt
+	btfss	TMR0IF		; check that this is timer2 interrupt
 	retfie	f		; if not then return
+	NOP
 	
         tblrd*+			; move one byte from PM to TABLAT, increment TBLPRT
 	movff	TABLAT, CCPR1L	; move read data from TABLAT to CCP DUTY CYCLE
@@ -37,12 +45,12 @@ INT_HIGH:
 	
 	movlw	0X20		; If countdown is zero, reset to original value for continued cycles of sinusoids
 	movwf	Countdown
-	call	END_INT		; Then end
+	BRA	END_INT		; Then end
 
 	
 END_INT:	
 	
-	bcf	TMR2IF		; clear interrupt flag
+	bcf	TMR0IF		; clear interrupt flag
 	retfie	f		; fast return from interrupt
     
     
