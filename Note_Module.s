@@ -1,6 +1,9 @@
 	#include <xc.inc>
 	
+global	Fsharp	
+
 extrn	SIGNAL, duty_cycle_upper
+
 	
 	
 psect	udata_acs
