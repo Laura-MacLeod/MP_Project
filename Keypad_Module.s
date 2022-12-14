@@ -2,19 +2,23 @@
 	
 
 global  keypad_setup, keypad_read_row, keypad_read_column, combine, interpret
+global	letter1, letter2, LCD_Send_Byte_I, LCD_delay_ms
 	
 extrn	SIGNAL, duty_cycle_upper
 extrn	A_note, Asharp, B_note, C_note, Csharp, D_note, Dsharp, E_note, F_note, Fsharp, G_note, Gsharp
 
 	
 psect	udata_acs
-delay_count:	ds 1
-row:	    ds    1	    ; reserve 1 byte for variable UART_counter
-column:	    ds    1
-value:	    ds	  1
-rowvals:    ds	  1
-columnvals: ds	  1
-delay_counter:	    ds	  1
+	
+delay_count:	ds	1
+row:		ds	1	    ; reserve 1 byte for variable UART_counter
+column:		ds	1
+value:		ds	1
+rowvals:	ds	1
+columnvals:	ds	1
+delay_counter:	ds	1
+letter1:	ds	1
+letter2:	ds	1
 
 	
  psect	pwm_code, class=CODE
@@ -78,6 +82,14 @@ interpret:						    ; 1 op
 	movlw	0xff		    ;NO BUTTON PRESSED	    ; 1 op
 	cpfseq	value					    ; 1 op
 	bra	next1					    ; 1 op
+	
+	movlw	00000001B	; display clear
+	call	LCD_Send_Byte_I
+	movlw	2		; wait 2ms
+	call	LCD_delay_ms
+	movlw	00000110B	; entry mode incr by 1 no shift
+	call	LCD_Send_Byte_I
+	
 	retlw	0x00		    ;RETURN NULL
 
 next1:
