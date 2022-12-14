@@ -39,14 +39,14 @@ INIT:
     GOTO    start
     
 start:
-	call	keypad_read_row
-	call	keypad_read_column
-	call	combine
-	call	interpret
+	call	keypad_read_row		    ; 153 ops
+	call	keypad_read_column	    ; 153 ops
+	call	combine			    ; 5 ops
+	call	interpret		    ; 72 ops from interpret, 4 ops in note so 76 ops
 	
-	bra	start
+	bra	start			    ; 1 op
 	
-
+; total ops to loop = 384 ops = 2.4e-5s = 24us
 
 DELAY1:
 	movlw	0x90		    ; 144 operations = 9us
