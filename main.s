@@ -4,6 +4,7 @@
 EXTRN	duty_cycle_upper, duty_cycle_lower
 EXTRN	PWM_INIT, TIMER_INIT, CLOCK_INIT, PORT_INIT, SIGNAL	
 extrn	keypad_setup, keypad_read_row, keypad_read_column, combine, interpret
+extrn	letter1, letter2, LCD_Send_Byte_D, LCD_Setup
 psect	udata_acs
 	
 delay_counter1:	    ds 1
@@ -35,6 +36,8 @@ INIT:
     CALL    TIMER_INIT
     CALL    PWM_INIT
     CALL    keypad_setup
+    CALL    LCD_Setup
+	
     
     GOTO    start
     
@@ -43,7 +46,7 @@ start:
 	call	keypad_read_column	    ; 153 ops
 	call	combine			    ; 5 ops
 	call	interpret		    ; 72 ops from interpret, 4 ops in note so 76 ops
-	
+
 	bra	start			    ; 1 op
 	
 ; total ops to loop = 384 ops = 2.4e-5s = 24us
