@@ -4,7 +4,7 @@
 global  keypad_setup, keypad_read_row, keypad_read_column, combine, interpret
 	
 extrn	SIGNAL, duty_cycle_upper
-extrn	A_note, Asharp, B_note, C_note, Csharp, D_note, Dsharp, E_note
+extrn	A_note, Asharp, B_note, C_note, Csharp, D_note, Dsharp, E_note, F_note, Fsharp, G_note, Gsharp
 
 	
 psect	udata_acs
@@ -64,26 +64,26 @@ keypad_read_column:		    ; 1 op
 	return			    ; 1 op			;Doesn't store value
     
 	
- combine:
-	movf	column, W
-	iorwf	row, W		    ;Combines columns with rows and move to W
-	movwf	value
-	return
+ combine:			    ; 1 op
+	movf	column, W	    ; 1 op
+	iorwf	row, W		    ; 1 op       ;Combines columns with rows and move to W
+	movwf	value		    ; 1 op
+	return			    ; 1 op
 
 
 	
+	; 4 operations per key
 	
-	
-interpret:
-	movlw	0xff		    ;NO BUTTON PRESSED
-	cpfseq	value		    
-	bra	next1
+interpret:						    ; 1 op
+	movlw	0xff		    ;NO BUTTON PRESSED	    ; 1 op
+	cpfseq	value					    ; 1 op
+	bra	next1					    ; 1 op
 	retlw	0x00		    ;RETURN NULL
 
 next1:
-	movlw	0x77	    ;ROW 4 COLUMN 4 PRESSED
-	cpfseq	value		    
-	bra	next2
+	movlw	0x77	    ;ROW 4 COLUMN 4 PRESSED	    ; 1 op
+	cpfseq	value					    ; 1 op
+	bra	next2					    ; 1 op
 ;	call	Fsharp
 	retlw	'c'		    ;RETURN 'C'
 next2:
@@ -96,6 +96,7 @@ next3:
 	movlw	0x7B	    ;ROW 4 COLUMN 3 PRESSED
 	cpfseq	value		    
 	bra	next4
+	call	Gsharp
 	retlw	'b'		    ;RETURN 'B'
 
 next4:
@@ -108,12 +109,14 @@ next5:
 	movlw	0x7D	    ;ROW 4 COLUMN 2 PRESSED
 	cpfseq	value		    
 	bra	next6
+	call	G_note
 	retlw	'0'		    ;RETURN '0'
 
 next6:
 	movlw	0xBB	    ;ROW 3 COLUMN 3 PRESSED
 	cpfseq	value		    
 	bra	next7
+	call	F_note
 	retlw	'9'		    ;RETURN '9'
 
 next7:
@@ -136,6 +139,7 @@ next9:
 	movlw	0x7E	    ;ROW 4 COLUMN 1 PRESSED
 	cpfseq	value		    
 	bra	next10
+	call	Fsharp
 	retlw	'a'		    ;RETURN 'A'
 
 next10:
@@ -180,11 +184,11 @@ next15:
 	retlw	'4'		    ;RETURN '4'
 
 next16:
-	movlw	0xEE	    ;ROW 1 COLUMN 1 PRESSED
-	cpfseq	value		    
+	movlw	0xEE	    ;ROW 1 COLUMN 1 PRESSED	    ; 1 op
+	cpfseq	value					    ; 1 op
 	bra	errorfunc
-	call	A_note
-	retlw	'1'		    ;RETURN '1'
+	call	A_note					    ; 1 op
+	retlw	'1'		    ;RETURN '1'		    ; 1 op
 
 errorfunc:
 	retlw	0xff		    ;ERROR
