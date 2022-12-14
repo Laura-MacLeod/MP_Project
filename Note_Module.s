@@ -3,7 +3,7 @@
 global	A_note, Asharp, B_note, C_note, Csharp, D_note, Dsharp, E_note, F_note, Fsharp, G_note, Gsharp
 
 	
-extrn	SIGNAL, duty_cycle_upper
+extrn	SIGNAL, duty_cycle_upper, LCD_Send_Byte_D
 
 	
 	
@@ -20,6 +20,8 @@ f_delay_counter:	    ds	  1
 fsharp_delay_counter:	    ds	  1
 g_delay_counter:	    ds	  1
 gsharp_delay_counter:	    ds	  1
+letter1:	ds	1
+letter2:	ds	1
 
 	
  psect	pwm_code, class=CODE
@@ -1158,12 +1160,18 @@ Gsharp:			    ; 622.25 Hz
 
 LOOP_GSHARP:
     
-    
 
 MOVLW    0x79 
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
-CALL     GSHARP_DELAY 
+
+    
+	movlw	0x47		    ; hex for 'G' ASCII
+	movwf	letter1, A
+	movlw	0x23		    ; hex for '#' ASCII
+	movwf	letter2, A
+    
+    
 MOVLW    0xc0 
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
@@ -1179,7 +1187,14 @@ CALL     GSHARP_DELAY
 MOVLW    0xc0 
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
-CALL     GSHARP_DELAY 
+
+    
+movf	letter1, W, A
+call	LCD_Send_Byte_D
+movf	letter2, W, A
+call	LCD_Send_Byte_D
+    
+    
 MOVLW    0x79 
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
