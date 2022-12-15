@@ -30,7 +30,7 @@ letter2:	ds	1
 ;---------------------------------------------------------------------------------------------------------------------------------
  
  
-A_note:			    ; 440 Hz
+A_note:			    ; 220 Hz ACHIEVED
     
     MOVLW   0xC8     	    ; 1 op
     MOVWF   PR2		    ; 1 op
@@ -43,8 +43,10 @@ MOVLW    0x64
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
 CALL     A_DELAY 
+    
     	movlw	0x41		    ; hex for 'A' ASCII
 	movwf	letter1, A
+	
 MOVLW    0x8a 
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
@@ -61,8 +63,10 @@ MOVLW    0xc8
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
 CALL     A_DELAY 
+	
 	movf	letter1, W, A
 	call	LCD_Send_Byte_D
+	
 MOVLW    0xc1 
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
@@ -106,8 +110,7 @@ CALL     A_DELAY
 MOVLW    0x3e 
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
-	movlw	00000001B	; display clear
-	call	LCD_Send_Byte_I
+
 RETURN
 
 
@@ -115,7 +118,7 @@ RETURN
  A_DELAY:					; THE LONGER THE DELAY, THE LOWER THE FREQUENCY
 					; BUT GETS TOO DISTORTED BELOW AROUND 0X20 DELAY FOR DELAY1 SO HIGH FREQUENCIES WORSE
 
-	movlw	0xa4		       ; 144 operations = 9us
+	movlw	0xa5		       ; 144 operations = 9us
 	movwf	a_delay_counter, A
 	bra	A_DELAY_SEQ1
 A_DELAY_SEQ1:
@@ -149,14 +152,13 @@ MOVLW    0x64
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
 CALL     ASHARP_DELAY 
-        	movlw	0x41		    ; hex for 'A' ASCII
+    
+        movlw	0x41		    ; hex for 'A' ASCII
 	movwf	letter1, A
-	    	movlw	0x23		    ; hex for '#' ASCII
+	movlw	0x23		    ; hex for '#' ASCII
 	movwf	letter2, A
-		movf	letter1, W, A
-	call	LCD_Send_Byte_D
-	movf	letter2, W, A
-	call	LCD_Send_Byte_D
+
+	
 MOVLW    0x8a 
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
@@ -172,11 +174,13 @@ CALL     ASHARP_DELAY
 MOVLW    0xc8 
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
+	CALL     ASHARP_DELAY
+	
 	movf	letter1, W, A
 	call	LCD_Send_Byte_D
 	movf	letter2, W, A
 	call	LCD_Send_Byte_D
-CALL     ASHARP_DELAY 
+	
 MOVLW    0xc1 
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
@@ -217,9 +221,6 @@ MOVLW    0x1d
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
 CALL     ASHARP_DELAY
-	movlw	00000001B	; display clear
-	call	LCD_Send_Byte_I
-RETURN
 MOVLW    0x3e 
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
@@ -230,7 +231,7 @@ RETURN
  ASHARP_DELAY:					; THE LONGER THE DELAY, THE LOWER THE FREQUENCY
 					; BUT GETS TOO DISTORTED BELOW AROUND 0X20 DELAY FOR DELAY1 SO HIGH FREQUENCIES WORSE
 
-	movlw	0x6a		       ; 144 operations = 9us
+	movlw	0x8A		       ; 144 operations = 9us
 	movwf	asharp_delay_counter, A
 	bra	ASHARP_DELAY_SEQ1
 ASHARP_DELAY_SEQ1:
@@ -264,13 +265,13 @@ MOVLW    0x64
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
 CALL     B_DELAY 
+    
 movlw	 0x42		    ; hex for 'B' ASCII
 movwf	 letter1, A
+    
 MOVLW    0x8a 
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
-movf	 letter1, W, A
-call	 LCD_Send_Byte_D
 CALL     B_DELAY 
 MOVLW    0xab 
 MOVWF    duty_cycle_upper 
@@ -283,11 +284,15 @@ CALL     B_DELAY
 MOVLW    0xc8 
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
-CALL     B_DELAY 
+CALL     B_DELAY    
 MOVLW    0xc1 
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
 CALL     B_DELAY 
+
+movf	 letter1, W, A
+call	 LCD_Send_Byte_D
+    
 MOVLW    0xab 
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
@@ -316,6 +321,8 @@ MOVLW    0x0
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
 CALL     B_DELAY 
+    
+    
 MOVLW    0x7 
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
@@ -327,8 +334,6 @@ CALL     B_DELAY
 MOVLW    0x3e 
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
-	movlw	00000001B	; display clear
-	call	LCD_Send_Byte_I
 RETURN
 
 
@@ -336,7 +341,7 @@ RETURN
  B_DELAY:					; THE LONGER THE DELAY, THE LOWER THE FREQUENCY
 					; BUT GETS TOO DISTORTED BELOW AROUND 0X20 DELAY FOR DELAY1 SO HIGH FREQUENCIES WORSE
 
-	movlw	0xAA		       ; 144 operations = 9us
+	movlw	0x90		       ; 144 operations = 9us
 	movwf	b_delay_counter, A
 	bra	B_DELAY_SEQ1
 B_DELAY_SEQ1:
@@ -370,6 +375,10 @@ MOVLW    0x64
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
 CALL     C_DELAY 
+    
+movlw	 0x43		    ; hex for 'C' ASCII
+movwf	 letter1, A
+    
 MOVLW    0x8a 
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
@@ -386,6 +395,10 @@ MOVLW    0xc8
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
 CALL     C_DELAY 
+    
+movf	 letter1, W, A
+call	 LCD_Send_Byte_D
+    
 MOVLW    0xc1 
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
@@ -437,7 +450,7 @@ RETURN
  C_DELAY:					; THE LONGER THE DELAY, THE LOWER THE FREQUENCY
 					; BUT GETS TOO DISTORTED BELOW AROUND 0X20 DELAY FOR DELAY1 SO HIGH FREQUENCIES WORSE
 
-	movlw	0x9A		       ; 144 operations = 9us
+	movlw	0x85		       ; 144 operations = 9us
 	movwf	c_delay_counter, A
 	bra	C_DELAY_SEQ1
 C_DELAY_SEQ1:
@@ -471,6 +484,12 @@ MOVLW    0x64
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
 CALL     CSHARP_DELAY 
+    
+movlw	 0x43		    ; hex for 'C' ASCII
+movwf	 letter1, A
+movlw	 0x23		    ; hex for '#' ASCII
+movwf	 letter2, A
+    
 MOVLW    0x8a 
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
@@ -487,6 +506,12 @@ MOVLW    0xc8
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
 CALL     CSHARP_DELAY 
+    
+movf	 letter1, W, A
+call	 LCD_Send_Byte_D
+movf	 letter2, W, A
+call	 LCD_Send_Byte_D
+    
 MOVLW    0xc1 
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
@@ -538,7 +563,7 @@ RETURN
  CSHARP_DELAY:					; THE LONGER THE DELAY, THE LOWER THE FREQUENCY
 					; BUT GETS TOO DISTORTED BELOW AROUND 0X20 DELAY FOR DELAY1 SO HIGH FREQUENCIES WORSE
 
-	movlw	0x8A		       ; 144 operations = 9us
+	movlw	0x6c	
 	movwf	csharp_delay_counter, A
 	bra	CSHARP_DELAY_SEQ1
 CSHARP_DELAY_SEQ1:
@@ -571,6 +596,10 @@ MOVLW    0x64
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
 CALL     D_DELAY 
+    
+movlw	 0x44		    ; hex for 'D' ASCII
+movwf	 letter1, A
+    
 MOVLW    0x8a 
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
@@ -587,6 +616,10 @@ MOVLW    0xc8
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
 CALL     D_DELAY 
+    
+movf	 letter1, W, A
+call	 LCD_Send_Byte_D    
+ 
 MOVLW    0xc1 
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
@@ -638,7 +671,7 @@ RETURN
  D_DELAY:					; THE LONGER THE DELAY, THE LOWER THE FREQUENCY
 					; BUT GETS TOO DISTORTED BELOW AROUND 0X20 DELAY FOR DELAY1 SO HIGH FREQUENCIES WORSE
 
-	movlw	0x7A		       ; 144 operations = 9us
+	movlw	0x73		       ; 144 operations = 9us
 	movwf	d_delay_counter, A
 	bra	D_DELAY_SEQ1
 D_DELAY_SEQ1:
@@ -668,10 +701,16 @@ LOOP_DSHARP:
     
     
 
-MOVLW    0x64 
+MOVLW    0x63 
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
 CALL     DSHARP_DELAY 
+    
+movlw	 0x44		    ; hex for 'D' ASCII
+movwf	 letter1, A
+movlw	 0x23		    ; hex for '#' ASCII
+movwf	 letter2, A
+    
 MOVLW    0x8a 
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
@@ -688,6 +727,12 @@ MOVLW    0xc8
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
 CALL     DSHARP_DELAY 
+    
+movf	 letter1, W, A
+call	 LCD_Send_Byte_D
+movf	 letter2, W, A
+call	 LCD_Send_Byte_D    
+    
 MOVLW    0xc1 
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
@@ -739,7 +784,7 @@ RETURN
  DSHARP_DELAY:					; THE LONGER THE DELAY, THE LOWER THE FREQUENCY
 					; BUT GETS TOO DISTORTED BELOW AROUND 0X20 DELAY FOR DELAY1 SO HIGH FREQUENCIES WORSE
 
-	movlw	0x6A		       ; 144 operations = 9us
+	movlw	0x5B		       ; 144 operations = 9us
 	movwf	dsharp_delay_counter, A
 	bra	DSHARP_DELAY_SEQ1
 DSHARP_DELAY_SEQ1:
@@ -772,6 +817,10 @@ MOVLW    0x64
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
 CALL     E_DELAY 
+    
+movlw	 0x45		    ; hex for 'E' ASCII
+movwf	 letter1, A
+    
 MOVLW    0x8a 
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
@@ -788,6 +837,10 @@ MOVLW    0xc8
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
 CALL     E_DELAY 
+    
+movf	 letter1, W, A
+call	 LCD_Send_Byte_D    
+    
 MOVLW    0xc1 
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
@@ -839,7 +892,7 @@ RETURN
  E_DELAY:					; THE LONGER THE DELAY, THE LOWER THE FREQUENCY
 					; BUT GETS TOO DISTORTED BELOW AROUND 0X20 DELAY FOR DELAY1 SO HIGH FREQUENCIES WORSE
 
-	movlw	0x61		       ; 144 operations = 9us
+	movlw	0x63		       ; 144 operations = 9us
 	movwf	e_delay_counter, A
 	bra	E_DELAY_SEQ1
 E_DELAY_SEQ1:
@@ -874,6 +927,10 @@ MOVLW    0x64
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
 CALL     F_DELAY 
+    
+movlw	 0x46		    ; hex for 'F' ASCII
+movwf	 letter1, A
+    
 MOVLW    0x8a 
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
@@ -894,6 +951,10 @@ MOVLW    0xc1
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
 CALL     F_DELAY 
+    
+movf	 letter1, W, A
+call	 LCD_Send_Byte_D    
+    
 MOVLW    0xab 
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
@@ -941,7 +1002,7 @@ RETURN
  F_DELAY:					; THE LONGER THE DELAY, THE LOWER THE FREQUENCY
 					; BUT GETS TOO DISTORTED BELOW AROUND 0X20 DELAY FOR DELAY1 SO HIGH FREQUENCIES WORSE
 
-	movlw	0x54		       ; 144 operations = 9us
+	movlw	0x5B		       ; 144 operations = 9us
 	movwf	f_delay_counter, A
 	bra	F_DELAY_SEQ1
 F_DELAY_SEQ1:
@@ -977,6 +1038,12 @@ MOVLW    0x64
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
 CALL     FSHARP_DELAY 
+    
+movlw	 0x46		    ; hex for 'F' ASCII
+movwf	 letter1, A
+movlw	 0x23		    ; hex for '#' ASCII
+movwf	 letter2, A
+    
 MOVLW    0x8a 
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
@@ -997,6 +1064,12 @@ MOVLW    0xc1
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
 CALL     FSHARP_DELAY 
+    
+movf	 letter1, W, A
+call	 LCD_Send_Byte_D
+movf	 letter2, W, A
+call	 LCD_Send_Byte_D    
+    
 MOVLW    0xab 
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
@@ -1044,7 +1117,7 @@ RETURN
  FSHARP_DELAY:					; THE LONGER THE DELAY, THE LOWER THE FREQUENCY
 					; BUT GETS TOO DISTORTED BELOW AROUND 0X20 DELAY FOR DELAY1 SO HIGH FREQUENCIES WORSE
 
-	movlw	0x4A		       ; 144 operations = 9us
+	movlw	0x44		       ; 144 operations = 9us
 	movwf	fsharp_delay_counter, A
 	bra	FSHARP_DELAY_SEQ1
 FSHARP_DELAY_SEQ1:
@@ -1081,6 +1154,10 @@ MOVLW    0x68
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
 CALL     G_DELAY 
+    
+movlw	 0x47		    ; hex for 'G' ASCII
+movwf	 letter1, A
+    
 MOVLW    0x90 
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
@@ -1097,6 +1174,10 @@ MOVLW    0xd0
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
 CALL     G_DELAY 
+    
+movf	 letter1, W, A
+call	 LCD_Send_Byte_D    
+    
 MOVLW    0xc8 
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
@@ -1148,7 +1229,7 @@ RETURN			    ; 1 op
  G_DELAY:					; THE LONGER THE DELAY, THE LOWER THE FREQUENCY
 					; BUT GETS TOO DISTORTED BELOW AROUND 0X20 DELAY FOR DELAY1 SO HIGH FREQUENCIES WORSE
 					
-	movlw	0x1a		       ; 144 operations = 9us	    ;1 op
+	movlw	0x37		       ; 144 operations = 9us	    ;1 op
 	movwf	g_delay_counter, A				    ;1 op
 G_DELAY_SEQ1:
 	decfsz	g_delay_counter, A	; decrement until zero	    ;1 op
@@ -1183,19 +1264,16 @@ Gsharp:			    ; 622.25 Hz
     MOVWF   PR2		    ; 1 op
 
 LOOP_GSHARP:
-    
 
 MOVLW    0x79 
 MOVWF    duty_cycle_upper 
-CALL     SIGNAL 
-
+CALL     SIGNAL
     
 	movlw	0x47		    ; hex for 'G' ASCII
 	movwf	letter1, A
 	movlw	0x23		    ; hex for '#' ASCII
 	movwf	letter2, A
     
-    
 MOVLW    0xc0 
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
@@ -1211,18 +1289,16 @@ CALL     GSHARP_DELAY
 MOVLW    0xc0 
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
-
-    
-movf	letter1, W, A
-call	LCD_Send_Byte_D
-movf	letter2, W, A
-call	LCD_Send_Byte_D
-    
-    
 MOVLW    0x79 
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
 CALL     GSHARP_DELAY 
+	
+movf	letter1, W, A
+call	LCD_Send_Byte_D
+movf	letter2, W, A
+call	LCD_Send_Byte_D	
+	
 MOVLW    0x32 
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
@@ -1246,7 +1322,7 @@ RETURN
  GSHARP_DELAY:					; THE LONGER THE DELAY, THE LOWER THE FREQUENCY
 					; BUT GETS TOO DISTORTED BELOW AROUND 0X20 DELAY FOR DELAY1 SO HIGH FREQUENCIES WORSE
 
-	movlw	0x3F		       ; 144 operations = 9us
+	movlw	0x80		       ; 144 operations = 9us
 	movwf	gsharp_delay_counter, A
 	bra	GSHARP_DELAY_SEQ1
 GSHARP_DELAY_SEQ1:
@@ -1261,8 +1337,7 @@ GSHARP_DELAY_SEQ2:
 	bra	GSHARP_DELAY_SEQ2
 	return
  
-	
-	
+
 	
 	; CURRENTLY 820HZ ISH, BUT SOUNDS BAD
 	
