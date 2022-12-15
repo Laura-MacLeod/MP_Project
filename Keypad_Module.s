@@ -96,7 +96,15 @@ next1:
 	movlw	0x77	    ;ROW 4 COLUMN 4 PRESSED	    ; 1 op
 	cpfseq	value					    ; 1 op
 	bra	next2					    ; 1 op
-;	call	Fsharp
+	call	A_note
+;	call	delay_seq
+;		call	delay_seq
+;			call	delay_seq
+;				call	delay_seq
+;					call	delay_seq
+	
+
+	call	F_note
 	retlw	'c'		    ;RETURN 'C'
 next2:
 	movlw	0xB7	    ;ROW 3 COLUMN 4 PRESSED
