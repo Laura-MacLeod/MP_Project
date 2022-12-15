@@ -4,7 +4,7 @@
 EXTRN	duty_cycle_upper, duty_cycle_lower
 EXTRN	PWM_INIT, TIMER_INIT, CLOCK_INIT, PORT_INIT, SIGNAL	
 extrn	keypad_setup, keypad_read_row, keypad_read_column, combine, interpret
-extrn	letter1, letter2, LCD_Send_Byte_D, LCD_Setup
+extrn	letter1, letter2, LCD_Send_Byte_D, LCD_Setup, LCD_Send_Byte_I
 psect	udata_acs
 	
 delay_counter1:	    ds 1
@@ -42,9 +42,11 @@ INIT:
     GOTO    start
     
 start:
+
 	call	keypad_read_row		    ; 153 ops
 	call	keypad_read_column	    ; 153 ops
-	call	combine			    ; 5 ops
+	call	combine
+
 	call	interpret		    ; 72 ops from interpret, 4 ops in note so 76 ops
 
 	bra	start			    ; 1 op
