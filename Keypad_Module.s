@@ -102,7 +102,7 @@ next1:
 	movlw	0x77	    ;ROW 4 COLUMN 4 PRESSED	    ; 1 op
 	cpfseq	value					    ; 1 op
 	bra	next2					    ; 1 op
-	call	A_note
+	call	C_note
 
 	call	F_note
 	retlw	'c'		    ;RETURN 'C'
