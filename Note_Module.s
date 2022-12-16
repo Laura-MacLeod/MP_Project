@@ -37,16 +37,111 @@ A_note:			    ; 220 Hz ACHIEVED
 
 LOOP_A:
     
-    
+;    
+;
+;MOVLW    0x64 
+;MOVWF    duty_cycle_upper 
+;CALL     SIGNAL 
+;CALL     A_DELAY 
+;    
+;    	movlw	0x41		    ; hex for 'A' ASCII
+;	movwf	letter1, A
+;	
+;MOVLW    0x8a 
+;MOVWF    duty_cycle_upper 
+;CALL     SIGNAL 
+;CALL     A_DELAY 
+;MOVLW    0xab 
+;MOVWF    duty_cycle_upper 
+;CALL     SIGNAL 
+;CALL     A_DELAY 
+;MOVLW    0xc1 
+;MOVWF    duty_cycle_upper 
+;CALL     SIGNAL 
+;CALL     A_DELAY 
+;MOVLW    0xc8 
+;MOVWF    duty_cycle_upper 
+;CALL     SIGNAL 
+;CALL     A_DELAY 
+;	
+;	movf	letter1, W, A
+;	call	LCD_Send_Byte_D
+;	
+;MOVLW    0xc1 
+;MOVWF    duty_cycle_upper 
+;CALL     SIGNAL 
+;CALL     A_DELAY 
+;MOVLW    0xab 
+;MOVWF    duty_cycle_upper 
+;CALL     SIGNAL 
+;CALL     A_DELAY 
+;MOVLW    0x8a 
+;MOVWF    duty_cycle_upper 
+;CALL     SIGNAL 
+;CALL     A_DELAY 
+;MOVLW    0x64 
+;MOVWF    duty_cycle_upper 
+;CALL     SIGNAL 
+;CALL     A_DELAY 
+;MOVLW    0x3e 
+;MOVWF    duty_cycle_upper 
+;CALL     SIGNAL 
+;CALL     A_DELAY 
+;MOVLW    0x1d 
+;MOVWF    duty_cycle_upper 
+;CALL     SIGNAL 
+;CALL     A_DELAY 
+;MOVLW    0x7 
+;MOVWF    duty_cycle_upper 
+;CALL     SIGNAL 
+;CALL     A_DELAY 
+;MOVLW    0x01 
+;MOVWF    duty_cycle_upper 
+;CALL     SIGNAL 
+;CALL     A_DELAY 
+;MOVLW    0x7 
+;MOVWF    duty_cycle_upper 
+;CALL     SIGNAL 
+;CALL     A_DELAY 
+;MOVLW    0x1d 
+;MOVWF    duty_cycle_upper 
+;CALL     SIGNAL 
+;CALL     A_DELAY 
+;MOVLW    0x3e 
+;MOVWF    duty_cycle_upper 
+;CALL     SIGNAL 
+;
+;	
 
+    
+MOVLW    0x0 
+MOVWF    duty_cycle_upper 
+CALL     SIGNAL 
+CALL     A_DELAY 
+    
+movlw	0x41		    ; hex for 'A' ASCII
+movwf	letter1, A   
+    
+MOVLW    0x7 
+MOVWF    duty_cycle_upper 
+CALL     SIGNAL 
+CALL     A_DELAY 
+MOVLW    0x1d 
+MOVWF    duty_cycle_upper 
+CALL     SIGNAL 
+CALL     A_DELAY 
+MOVLW    0x3e 
+MOVWF    duty_cycle_upper 
+CALL     SIGNAL 
+CALL     A_DELAY 
 MOVLW    0x64 
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
 CALL     A_DELAY 
     
-    	movlw	0x41		    ; hex for 'A' ASCII
-	movwf	letter1, A
-	
+movf	letter1, W, A
+call	LCD_Send_Byte_D	    
+    
 MOVLW    0x8a 
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
@@ -63,10 +158,6 @@ MOVLW    0xc8
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
 CALL     A_DELAY 
-	
-	movf	letter1, W, A
-	call	LCD_Send_Byte_D
-	
 MOVLW    0xc1 
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
@@ -94,23 +185,24 @@ CALL     A_DELAY
 MOVLW    0x7 
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
-CALL     A_DELAY 
-MOVLW    0x0 
-MOVWF    duty_cycle_upper 
-CALL     SIGNAL 
-CALL     A_DELAY 
-MOVLW    0x7 
-MOVWF    duty_cycle_upper 
-CALL     SIGNAL 
-CALL     A_DELAY 
-MOVLW    0x1d 
-MOVWF    duty_cycle_upper 
-CALL     SIGNAL 
-CALL     A_DELAY 
-MOVLW    0x3e 
-MOVWF    duty_cycle_upper 
-CALL     SIGNAL 
-
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+	
 RETURN
 
 
@@ -1289,6 +1381,7 @@ CALL     GSHARP_DELAY
 MOVLW    0xc0 
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
+	
 MOVLW    0x79 
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
@@ -1315,6 +1408,15 @@ MOVLW    0x32
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
 RETURN
 
 
