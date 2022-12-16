@@ -83,6 +83,8 @@ interpret:						    ; 1 op
 	cpfseq	value					    ; 1 op
 	bra	next1					    ; 1 op
 	
+	MOVLW   0xF8	    ; 0b11111100
+	MOVWF   T2CON	    ; Timer control register - <6:3> postscale control, <2> timer on/off, <1:0> prescale control
 	movlw	00000001B	; display clear
 	call	LCD_Send_Byte_I
 	movlw	2		; wait 2ms
@@ -93,16 +95,14 @@ interpret:						    ; 1 op
 	retlw	0x00		    ;RETURN NULL
 
 next1:
+    
+	MOVLW   0xFC	    ; 0b11111100
+	MOVWF   T2CON	    ; Timer control register - <6:3> postscale control, <2> timer on/off, <1:0> prescale control
+    
 	movlw	0x77	    ;ROW 4 COLUMN 4 PRESSED	    ; 1 op
 	cpfseq	value					    ; 1 op
 	bra	next2					    ; 1 op
 	call	A_note
-;	call	delay_seq
-;		call	delay_seq
-;			call	delay_seq
-;				call	delay_seq
-;					call	delay_seq
-	
 
 	call	F_note
 	retlw	'c'		    ;RETURN 'C'
@@ -211,7 +211,10 @@ next16:
 	retlw	'1'		    ;RETURN '1'		    ; 1 op
 
 errorfunc:
-	retlw	0xff		    ;ERROR
+;	retlw	0xff		    ;ERROR
+    
+    
+    
 	return
     
     
