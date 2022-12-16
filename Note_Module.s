@@ -1357,59 +1357,110 @@ Gsharp:			    ; 622.25 Hz
 
 LOOP_GSHARP:
 
-MOVLW    0x79 
-MOVWF    duty_cycle_upper 
-CALL     SIGNAL
-    
-	movlw	0x47		    ; hex for 'G' ASCII
-	movwf	letter1, A
-	movlw	0x23		    ; hex for '#' ASCII
-	movwf	letter2, A
-    
-MOVLW    0xc0 
-MOVWF    duty_cycle_upper 
-CALL     SIGNAL 
-CALL     GSHARP_DELAY 
-MOVLW    0xed 
-MOVWF    duty_cycle_upper 
-CALL     SIGNAL 
-CALL     GSHARP_DELAY 
-MOVLW    0xed 
-MOVWF    duty_cycle_upper 
-CALL     SIGNAL 
-CALL     GSHARP_DELAY 
-MOVLW    0xc0 
+;MOVLW    0x79 
+;MOVWF    duty_cycle_upper 
+;CALL     SIGNAL
+;    
+;	movlw	0x47		    ; hex for 'G' ASCII
+;	movwf	letter1, A
+;	movlw	0x23		    ; hex for '#' ASCII
+;	movwf	letter2, A
+;    
+;MOVLW    0xc0 
+;MOVWF    duty_cycle_upper 
+;CALL     SIGNAL 
+;CALL     GSHARP_DELAY 
+;MOVLW    0xed 
+;MOVWF    duty_cycle_upper 
+;CALL     SIGNAL 
+;CALL     GSHARP_DELAY 
+;MOVLW    0xed 
+;MOVWF    duty_cycle_upper 
+;CALL     SIGNAL 
+;CALL     GSHARP_DELAY 
+;MOVLW    0xc0 
+;MOVWF    duty_cycle_upper 
+;CALL     SIGNAL 
+;	
+;MOVLW    0x79 
+;MOVWF    duty_cycle_upper 
+;CALL     SIGNAL 
+;CALL     GSHARP_DELAY 
+;	
+;movf	letter1, W, A
+;call	LCD_Send_Byte_D
+;movf	letter2, W, A
+;call	LCD_Send_Byte_D	
+;	
+;MOVLW    0x32 
+;MOVWF    duty_cycle_upper 
+;CALL     SIGNAL 
+;CALL     GSHARP_DELAY 
+;MOVLW    0x6 
+;MOVWF    duty_cycle_upper 
+;CALL     SIGNAL 
+;CALL     GSHARP_DELAY 
+;MOVLW    0x6 
+;MOVWF    duty_cycle_upper 
+;CALL     SIGNAL 
+;CALL     GSHARP_DELAY 
+;MOVLW    0x32 
+;MOVWF    duty_cycle_upper 
+;CALL     SIGNAL 
+
+	
+	
+MOVLW    0x0 
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
 	
-MOVLW    0x79 
+movlw	0x47		    ; hex for 'G' ASCII
+	movwf	letter1, A
+	movlw	0x23		    ; hex for '#' ASCII
+	movwf	letter2, A
+    	
+	
+MOVLW    0x17 
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
-CALL     GSHARP_DELAY 
+CALL     GSHARP_DELAY
+MOVLW    0x54 
+MOVWF    duty_cycle_upper 
+CALL     SIGNAL 
+CALL     GSHARP_DELAY
+MOVLW    0x9f 
+MOVWF    duty_cycle_upper 
+CALL     SIGNAL 
+CALL     GSHARP_DELAY
+MOVLW    0xdb 
+MOVWF    duty_cycle_upper 
+CALL     SIGNAL 
+
+MOVLW    0xf3 
+MOVWF    duty_cycle_upper 
+CALL     SIGNAL 
+	CALL     GSHARP_DELAY
 	
 movf	letter1, W, A
 call	LCD_Send_Byte_D
 movf	letter2, W, A
-call	LCD_Send_Byte_D	
+call	LCD_Send_Byte_D		
 	
-MOVLW    0x32 
+MOVLW    0xdb 
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
-CALL     GSHARP_DELAY 
-MOVLW    0x6 
+CALL     GSHARP_DELAY
+MOVLW    0x9f 
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
-CALL     GSHARP_DELAY 
-MOVLW    0x6 
+CALL     GSHARP_DELAY
+MOVLW    0x54 
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
-CALL     GSHARP_DELAY 
-MOVLW    0x32 
+CALL     GSHARP_DELAY
+MOVLW    0x17 
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
-
-	
-	
 	
 	
 	
@@ -1424,7 +1475,7 @@ RETURN
  GSHARP_DELAY:					; THE LONGER THE DELAY, THE LOWER THE FREQUENCY
 					; BUT GETS TOO DISTORTED BELOW AROUND 0X20 DELAY FOR DELAY1 SO HIGH FREQUENCIES WORSE
 
-	movlw	0x80		       ; 144 operations = 9us
+	movlw	0x7d		       ; 144 operations = 9us
 	movwf	gsharp_delay_counter, A
 	bra	GSHARP_DELAY_SEQ1
 GSHARP_DELAY_SEQ1:
