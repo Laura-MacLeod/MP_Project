@@ -1407,64 +1407,6 @@ LOOP_GSHARP:
 ;MOVLW    0x32 
 ;MOVWF    duty_cycle_upper 
 ;CALL     SIGNAL 
-
-	
-	
-MOVLW    0x0 
-MOVWF    duty_cycle_upper 
-CALL     SIGNAL 
-	
-movlw	0x47		    ; hex for 'G' ASCII
-	movwf	letter1, A
-	movlw	0x23		    ; hex for '#' ASCII
-	movwf	letter2, A
-    	
-	
-MOVLW    0x17 
-MOVWF    duty_cycle_upper 
-CALL     SIGNAL 
-CALL     GSHARP_DELAY
-MOVLW    0x54 
-MOVWF    duty_cycle_upper 
-CALL     SIGNAL 
-CALL     GSHARP_DELAY
-MOVLW    0x9f 
-MOVWF    duty_cycle_upper 
-CALL     SIGNAL 
-CALL     GSHARP_DELAY
-MOVLW    0xdb 
-MOVWF    duty_cycle_upper 
-CALL     SIGNAL 
-
-MOVLW    0xf3 
-MOVWF    duty_cycle_upper 
-CALL     SIGNAL 
-	CALL     GSHARP_DELAY
-	
-movf	letter1, W, A
-call	LCD_Send_Byte_D
-movf	letter2, W, A
-call	LCD_Send_Byte_D		
-	
-MOVLW    0xdb 
-MOVWF    duty_cycle_upper 
-CALL     SIGNAL 
-CALL     GSHARP_DELAY
-MOVLW    0x9f 
-MOVWF    duty_cycle_upper 
-CALL     SIGNAL 
-CALL     GSHARP_DELAY
-MOVLW    0x54 
-MOVWF    duty_cycle_upper 
-CALL     SIGNAL 
-CALL     GSHARP_DELAY
-MOVLW    0x17 
-MOVWF    duty_cycle_upper 
-CALL     SIGNAL 
-	
-	
-	
-	
 	
 	
 	
