@@ -25,7 +25,7 @@ CLOCK_INIT:
     BCF	    OSCTUNE, 7
     BSF	    OSCCON2, 0
     
-    BSF	    OSCCON, 6	    ; 1  ;Oscillator Speed is 1MHz ; Fosc = 1MHz
+    BSF	    OSCCON, 6	    ; 1  ;Oscillator Speed is 8MHz ; Fosc = 8MHz
     BSF	    OSCCON, 5	    ; 1	
     BCF	    OSCCON, 4	    ; 0
     
