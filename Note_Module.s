@@ -208,18 +208,18 @@ CALL     SIGNAL
 RETURN
 
 
- ; achieved 221 Hz   
+ 
  A_DELAY:					; THE LONGER THE DELAY, THE LOWER THE FREQUENCY
 					; BUT GETS TOO DISTORTED BELOW AROUND 0X20 DELAY FOR DELAY1 SO HIGH FREQUENCIES WORSE
 
-	movlw	0xa5		       ; 144 operations = 9us
+	movlw	0xa5		     
 	movwf	a_delay_counter, A
 	bra	A_DELAY_SEQ1
 A_DELAY_SEQ1:
 	decfsz	a_delay_counter, A	; decrement until zero
 	bra	A_DELAY_SEQ1
 A_DELAY2:	
-	movlw	0x02		    ; 144 operations = 9us
+	movlw	0x02		    
 	movwf	a_delay_counter, A
 	bra	A_DELAY_SEQ2
 A_DELAY_SEQ2:
@@ -233,7 +233,7 @@ A_DELAY_SEQ2:
 	
 	
 	
-Asharp:			    ; 233.08 Hz, best 236
+Asharp:			 
     
     MOVLW   0xC8     	    ; 1 op
     MOVWF   PR2		    ; 1 op
@@ -325,14 +325,14 @@ RETURN
  ASHARP_DELAY:					; THE LONGER THE DELAY, THE LOWER THE FREQUENCY
 					; BUT GETS TOO DISTORTED BELOW AROUND 0X20 DELAY FOR DELAY1 SO HIGH FREQUENCIES WORSE
 
-	movlw	0x8A		       ; 144 operations = 9us
+	movlw	0x8A		      
 	movwf	asharp_delay_counter, A
 	bra	ASHARP_DELAY_SEQ1
 ASHARP_DELAY_SEQ1:
 	decfsz	asharp_delay_counter, A	; decrement until zero
 	bra	ASHARP_DELAY_SEQ1
 ASHARP_DELAY2:	
-	movlw	0x02		    ; 144 operations = 9us
+	movlw	0x02		  
 	movwf	asharp_delay_counter, A
 	bra	ASHARP_DELAY_SEQ2
 ASHARP_DELAY_SEQ2:
@@ -346,7 +346,7 @@ ASHARP_DELAY_SEQ2:
 	
 	
 	
-B_note:			    ; 493.88 Hz
+B_note:			   
     
     MOVLW   0xC8     	    ; 1 op
     MOVWF   PR2		    ; 1 op
@@ -435,14 +435,14 @@ RETURN
  B_DELAY:					; THE LONGER THE DELAY, THE LOWER THE FREQUENCY
 					; BUT GETS TOO DISTORTED BELOW AROUND 0X20 DELAY FOR DELAY1 SO HIGH FREQUENCIES WORSE
 
-	movlw	0x90		       ; 144 operations = 9us
+	movlw	0x90		    
 	movwf	b_delay_counter, A
 	bra	B_DELAY_SEQ1
 B_DELAY_SEQ1:
 	decfsz	b_delay_counter, A	; decrement until zero
 	bra	B_DELAY_SEQ1
 B_DELAY2:	
-	movlw	0x02		    ; 144 operations = 9us
+	movlw	0x02		  
 	movwf	b_delay_counter, A
 	bra	B_DELAY_SEQ2
 B_DELAY_SEQ2:
@@ -450,13 +450,13 @@ B_DELAY_SEQ2:
 	bra	B_DELAY_SEQ2
 	return
  
-	; CURRENTLY 230 HZ
+	
 	
 ;---------------------------------------------------------------------------------------------------------------------------------
 	
 	
 	
-C_note:			    ; 523.25 Hz
+C_note:			    
     
     MOVLW   0xC8     	    ; 1 op
     MOVWF   PR2		    ; 1 op
@@ -544,14 +544,14 @@ RETURN
  C_DELAY:					; THE LONGER THE DELAY, THE LOWER THE FREQUENCY
 					; BUT GETS TOO DISTORTED BELOW AROUND 0X20 DELAY FOR DELAY1 SO HIGH FREQUENCIES WORSE
 
-	movlw	0x85		       ; 144 operations = 9us
+	movlw	0x85		       
 	movwf	c_delay_counter, A
 	bra	C_DELAY_SEQ1
 C_DELAY_SEQ1:
 	decfsz	c_delay_counter, A	; decrement until zero
 	bra	C_DELAY_SEQ1
 C_DELAY2:	
-	movlw	0x02		    ; 144 operations = 9us
+	movlw	0x02		   
 	movwf	c_delay_counter, A
 	bra	C_DELAY_SEQ2
 C_DELAY_SEQ2:
@@ -559,13 +559,13 @@ C_DELAY_SEQ2:
 	bra	C_DELAY_SEQ2
 	return
  
-	; CURRENTLY 255HZ
+
 	
 ;---------------------------------------------------------------------------------------------------------------------------------
 	
 	
 	
-Csharp:			    ; 554.37 Hz
+Csharp:			    
     
     MOVLW   0xC8     	    ; 1 op
     MOVWF   PR2		    ; 1 op
@@ -664,7 +664,7 @@ CSHARP_DELAY_SEQ1:
 	decfsz	csharp_delay_counter, A	; decrement until zero
 	bra	CSHARP_DELAY_SEQ1
 CSHARP_DELAY2:	
-	movlw	0x02		    ; 144 operations = 9us
+	movlw	0x02		
 	movwf	csharp_delay_counter, A
 	bra	CSHARP_DELAY_SEQ2
 CSHARP_DELAY_SEQ2:
@@ -672,12 +672,12 @@ CSHARP_DELAY_SEQ2:
 	bra	CSHARP_DELAY_SEQ2
 	return
  
-	; CURRENTLY 280 Hz
+
 	
 ;---------------------------------------------------------------------------------------------------------------------------------
 	
 	
-D_note:			    ; 587.33 Hz
+D_note:			
     
     MOVLW   0xC8     	    ; 1 op
     MOVWF   PR2		    ; 1 op
@@ -765,14 +765,14 @@ RETURN
  D_DELAY:					; THE LONGER THE DELAY, THE LOWER THE FREQUENCY
 					; BUT GETS TOO DISTORTED BELOW AROUND 0X20 DELAY FOR DELAY1 SO HIGH FREQUENCIES WORSE
 
-	movlw	0x73		       ; 144 operations = 9us
+	movlw	0x73		      
 	movwf	d_delay_counter, A
 	bra	D_DELAY_SEQ1
 D_DELAY_SEQ1:
 	decfsz	d_delay_counter, A	; decrement until zero
 	bra	D_DELAY_SEQ1
 D_DELAY2:	
-	movlw	0x02		    ; 144 operations = 9us
+	movlw	0x02		    
 	movwf	d_delay_counter, A
 	bra	D_DELAY_SEQ2
 D_DELAY_SEQ2:
@@ -786,7 +786,7 @@ D_DELAY_SEQ2:
 	
 	
 	
-Dsharp:			    ; 622.25 Hz
+Dsharp:			 
     
     MOVLW   0xC8     	    ; 1 op
     MOVWF   PR2		    ; 1 op
@@ -878,14 +878,14 @@ RETURN
  DSHARP_DELAY:					; THE LONGER THE DELAY, THE LOWER THE FREQUENCY
 					; BUT GETS TOO DISTORTED BELOW AROUND 0X20 DELAY FOR DELAY1 SO HIGH FREQUENCIES WORSE
 
-	movlw	0x5B		       ; 144 operations = 9us
+	movlw	0x5B		    
 	movwf	dsharp_delay_counter, A
 	bra	DSHARP_DELAY_SEQ1
 DSHARP_DELAY_SEQ1:
 	decfsz	dsharp_delay_counter, A	; decrement until zero
 	bra	DSHARP_DELAY_SEQ1
 DSHARP_DELAY2:	
-	movlw	0x02		    ; 144 operations = 9us
+	movlw	0x02		  
 	movwf	dsharp_delay_counter, A
 	bra	DSHARP_DELAY_SEQ2
 DSHARP_DELAY_SEQ2:
@@ -893,12 +893,12 @@ DSHARP_DELAY_SEQ2:
 	bra	DSHARP_DELAY_SEQ2
 	return
  
-	;CURRENTLY 307 HZ
+
 	
 ;---------------------------------------------------------------------------------------------------------------------------------
 	
 	
-E_note:			    ; 659.25 Hz
+E_note:			 
     
     MOVLW   0xC8     	    ; 1 op
     MOVWF   PR2		    ; 1 op
@@ -986,14 +986,14 @@ RETURN
  E_DELAY:					; THE LONGER THE DELAY, THE LOWER THE FREQUENCY
 					; BUT GETS TOO DISTORTED BELOW AROUND 0X20 DELAY FOR DELAY1 SO HIGH FREQUENCIES WORSE
 
-	movlw	0x63		       ; 144 operations = 9us
+	movlw	0x63		   
 	movwf	e_delay_counter, A
 	bra	E_DELAY_SEQ1
 E_DELAY_SEQ1:
 	decfsz	e_delay_counter, A	; decrement until zero
 	bra	E_DELAY_SEQ1
 E_DELAY2:	
-	movlw	0x02		    ; 144 operations = 9us
+	movlw	0x02		  
 	movwf	e_delay_counter, A
 	bra	E_DELAY_SEQ2
 E_DELAY_SEQ2:
@@ -1002,13 +1002,13 @@ E_DELAY_SEQ2:
 	return
  
 	
-	; CURRENTLY 355 HZ
+
 	
 ;---------------------------------------------------------------------------------------------------------------------------------
 	
 	
 	
-F_note:			    ; 622.25 Hz
+F_note:			  
     
     MOVLW   0xC8     	    ; 1 op
     MOVWF   PR2		    ; 1 op
@@ -1096,14 +1096,14 @@ RETURN
  F_DELAY:					; THE LONGER THE DELAY, THE LOWER THE FREQUENCY
 					; BUT GETS TOO DISTORTED BELOW AROUND 0X20 DELAY FOR DELAY1 SO HIGH FREQUENCIES WORSE
 
-	movlw	0x5B		       ; 144 operations = 9us
+	movlw	0x5B		     
 	movwf	f_delay_counter, A
 	bra	F_DELAY_SEQ1
 F_DELAY_SEQ1:
 	decfsz	f_delay_counter, A	; decrement until zero
 	bra	F_DELAY_SEQ1
 F_DELAY2:	
-	movlw	0x02		    ; 144 operations = 9us
+	movlw	0x02		   
 	movwf	f_delay_counter, A
 	bra	F_DELAY_SEQ2
 F_DELAY_SEQ2:
@@ -1112,14 +1112,14 @@ F_DELAY_SEQ2:
 	return
  
 	
-	; CURRENTLY 420 HZ
+
 	
 	
 ;---------------------------------------------------------------------------------------------------------------------------------
 	
 	
 	
-Fsharp:			    ; 622.25 Hz
+Fsharp:			   
     
     MOVLW   0xC8     	    ; 1 op
     MOVWF   PR2		    ; 1 op
@@ -1211,14 +1211,14 @@ RETURN
  FSHARP_DELAY:					; THE LONGER THE DELAY, THE LOWER THE FREQUENCY
 					; BUT GETS TOO DISTORTED BELOW AROUND 0X20 DELAY FOR DELAY1 SO HIGH FREQUENCIES WORSE
 
-	movlw	0x44		       ; 144 operations = 9us
+	movlw	0x44		   
 	movwf	fsharp_delay_counter, A
 	bra	FSHARP_DELAY_SEQ1
 FSHARP_DELAY_SEQ1:
 	decfsz	fsharp_delay_counter, A	; decrement until zero
 	bra	FSHARP_DELAY_SEQ1
 FSHARP_DELAY2:	
-	movlw	0x02		    ; 144 operations = 9us
+	movlw	0x02		   
 	movwf	fsharp_delay_counter, A
 	bra	FSHARP_DELAY_SEQ2
 FSHARP_DELAY_SEQ2:
@@ -1227,7 +1227,7 @@ FSHARP_DELAY_SEQ2:
 	return
  
 	
-	; CURRENTLY 471 HZ
+
 	
 		
 	
@@ -1235,7 +1235,7 @@ FSHARP_DELAY_SEQ2:
 	
 	
 	
-G_note:			    ; 622.25 Hz	    ; 1 op
+G_note:			   	    ; 1 op
     
     MOVLW   0xff			    ; 1 op	    
     MOVWF   PR2				    ; 1 op
@@ -1323,18 +1323,18 @@ RETURN			    ; 1 op
  G_DELAY:					; THE LONGER THE DELAY, THE LOWER THE FREQUENCY
 					; BUT GETS TOO DISTORTED BELOW AROUND 0X20 DELAY FOR DELAY1 SO HIGH FREQUENCIES WORSE
 					
-	movlw	0x37		       ; 144 operations = 9us	    ;1 op
-	movwf	g_delay_counter, A				    ;1 op
+	movlw	0x37		       
+	movwf	g_delay_counter, A			
 G_DELAY_SEQ1:
-	decfsz	g_delay_counter, A	; decrement until zero	    ;1 op
-	bra	G_DELAY_SEQ1					    ;1 op	    2*1*delay_val = num of ops
+	decfsz	g_delay_counter, A	; decrement until zero	 
+	bra	G_DELAY_SEQ1					   	    2*1*delay_val = num of ops
 G_DELAY2:	
-	movlw	0x1a		    ; 144 operations = 9us	    ;1 op
-	movwf	g_delay_counter, A				    ;1 op
+	movlw	0x1a		   	  
+	movwf	g_delay_counter, A				  
 G_DELAY_SEQ2:
-	decfsz	g_delay_counter, A	; decrement until zero	    ;1 op
-	bra	G_DELAY_SEQ2					    ;1 op	    2*1*delay_val = num of ops
-	return							    ;1 op
+	decfsz	g_delay_counter, A	; decrement until zero	   
+	bra	G_DELAY_SEQ2					   	    2*1*delay_val = num of ops
+	return							  
  
 	; total ops = 2 + 2*val1 + 2 + 2*val2 + 2 + 2*val3 + 1 = 7 + 2*val1 + 2*val2 + 2*val3
 	
@@ -1345,14 +1345,13 @@ G_DELAY_SEQ2:
 	;need 1280 extra ops so val2 = (1280 - 7 - 2*255 - 2*255)/2 = 127 = 0x7f for val3 and 0xff for vals 1,2
 		
 		
-		;  FREQ CURRENTLY 640HZ
 		
 	
 ;---------------------------------------------------------------------------------------------------------------------------------
 	
 	
 	
-Gsharp:			    ; 622.25 Hz
+Gsharp:			   
     
     MOVLW   0xF2     	    ; 1 op
     MOVWF   PR2		    ; 1 op
@@ -1473,17 +1472,16 @@ RETURN
 
 
     
- GSHARP_DELAY:					; THE LONGER THE DELAY, THE LOWER THE FREQUENCY
-					; BUT GETS TOO DISTORTED BELOW AROUND 0X20 DELAY FOR DELAY1 SO HIGH FREQUENCIES WORSE
+ GSHARP_DELAY:					
 
-	movlw	0x7d		       ; 144 operations = 9us
+	movlw	0x7d		     
 	movwf	gsharp_delay_counter, A
 	bra	GSHARP_DELAY_SEQ1
 GSHARP_DELAY_SEQ1:
 	decfsz	gsharp_delay_counter, A	; decrement until zero
 	bra	GSHARP_DELAY_SEQ1
 GSHARP_DELAY2:	
-	movlw	0x02		    ; 144 operations = 9us
+	movlw	0x02		
 	movwf	gsharp_delay_counter, A
 	bra	GSHARP_DELAY_SEQ2
 GSHARP_DELAY_SEQ2:
@@ -1493,9 +1491,7 @@ GSHARP_DELAY_SEQ2:
  
 
 	
-	; CURRENTLY 820HZ ISH, BUT SOUNDS BAD
-	
-	
+
 	
 	
 	
