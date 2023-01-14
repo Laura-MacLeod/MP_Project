@@ -32,15 +32,14 @@ letter2:	ds	1
  
 A_note:			    ; 220 Hz ACHIEVED
     
-    MOVLW   0xC8     	    ; 1 op
-    MOVWF   PR2		    ; 1 op
+    MOVLW   0xC8     	  
+    MOVWF   PR2		    ; Set PWM period
 
 LOOP_A:
 
-; ----------- COMMENTED OUT ----------
+; ----------- COMMENTED OUT, THIS USES A SINE BUT NEW VALUES USE COSINE, BOTH WORK ----------
     
-;    
-;
+
 ;MOVLW    0x64 
 ;MOVWF    duty_cycle_upper 
 ;CALL     SIGNAL 
@@ -121,7 +120,7 @@ MOVWF    duty_cycle_upper
 CALL     SIGNAL 
 CALL     A_DELAY 
     
-movlw	0x41		    ; hex for 'A' ASCII
+movlw	0x41			; hex for 'A' ASCII
 movwf	letter1, A   
     
 MOVLW    0x7 
@@ -142,7 +141,7 @@ CALL     SIGNAL
 CALL     A_DELAY 
     
 movf	letter1, W, A
-call	LCD_Send_Byte_D	    
+call	LCD_Send_Byte_D		; Send letter to LCD
     
 MOVLW    0x8a 
 MOVWF    duty_cycle_upper 
@@ -187,21 +186,6 @@ CALL     A_DELAY
 MOVLW    0x7 
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
 	
@@ -235,23 +219,20 @@ A_DELAY_SEQ2:
 	
 Asharp:			 
     
-    MOVLW   0xC8     	    ; 1 op
-    MOVWF   PR2		    ; 1 op
+    MOVLW   0xC8     	    
+    MOVWF   PR2		    ; Set PWM period
 
 LOOP_ASHARP:
     
-    
-
 MOVLW    0x64 
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
 CALL     ASHARP_DELAY 
     
-        movlw	0x41		    ; hex for 'A' ASCII
-	movwf	letter1, A
-	movlw	0x23		    ; hex for '#' ASCII
-	movwf	letter2, A
-
+movlw	0x41		    ; hex for 'A' ASCII
+movwf	letter1, A
+movlw	0x23		    ; hex for '#' ASCII
+movwf	letter2, A
 	
 MOVLW    0x8a 
 MOVWF    duty_cycle_upper 
@@ -268,12 +249,12 @@ CALL     ASHARP_DELAY
 MOVLW    0xc8 
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
-	CALL     ASHARP_DELAY
+CALL     ASHARP_DELAY
 	
-	movf	letter1, W, A
-	call	LCD_Send_Byte_D
-	movf	letter2, W, A
-	call	LCD_Send_Byte_D
+movf	letter1, W, A
+call	LCD_Send_Byte_D		; Send letter to LCD
+movf	letter2, W, A
+call	LCD_Send_Byte_D		; Send letter to LCD
 	
 MOVLW    0xc1 
 MOVWF    duty_cycle_upper 
@@ -322,8 +303,7 @@ RETURN
 
 
     
- ASHARP_DELAY:					; THE LONGER THE DELAY, THE LOWER THE FREQUENCY
-					; BUT GETS TOO DISTORTED BELOW AROUND 0X20 DELAY FOR DELAY1 SO HIGH FREQUENCIES WORSE
+ ASHARP_DELAY:					
 
 	movlw	0x8A		      
 	movwf	asharp_delay_counter, A
@@ -348,8 +328,8 @@ ASHARP_DELAY_SEQ2:
 	
 B_note:			   
     
-    MOVLW   0xC8     	    ; 1 op
-    MOVWF   PR2		    ; 1 op
+    MOVLW   0xC8     
+    MOVWF   PR2		    ; Set PWM period
 
 LOOP_B:
     
@@ -385,7 +365,7 @@ CALL     SIGNAL
 CALL     B_DELAY 
 
 movf	 letter1, W, A
-call	 LCD_Send_Byte_D
+call	 LCD_Send_Byte_D		; Send letter to LCD
     
 MOVLW    0xab 
 MOVWF    duty_cycle_upper 
@@ -415,8 +395,6 @@ MOVLW    0x0
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
 CALL     B_DELAY 
-    
-    
 MOVLW    0x7 
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
@@ -432,8 +410,7 @@ RETURN
 
 
     
- B_DELAY:					; THE LONGER THE DELAY, THE LOWER THE FREQUENCY
-					; BUT GETS TOO DISTORTED BELOW AROUND 0X20 DELAY FOR DELAY1 SO HIGH FREQUENCIES WORSE
+ B_DELAY:				
 
 	movlw	0x90		    
 	movwf	b_delay_counter, A
@@ -458,8 +435,8 @@ B_DELAY_SEQ2:
 	
 C_note:			    
     
-    MOVLW   0xC8     	    ; 1 op
-    MOVWF   PR2		    ; 1 op
+    MOVLW   0xC8     
+    MOVWF   PR2		    ; Set PWM period
 
 LOOP_C:
     
@@ -491,7 +468,7 @@ CALL     SIGNAL
 CALL     C_DELAY 
     
 movf	 letter1, W, A
-call	 LCD_Send_Byte_D
+call	 LCD_Send_Byte_D		; Send letter to LCD
     
 MOVLW    0xc1 
 MOVWF    duty_cycle_upper 
@@ -541,8 +518,7 @@ RETURN
 
 
     
- C_DELAY:					; THE LONGER THE DELAY, THE LOWER THE FREQUENCY
-					; BUT GETS TOO DISTORTED BELOW AROUND 0X20 DELAY FOR DELAY1 SO HIGH FREQUENCIES WORSE
+ C_DELAY:				
 
 	movlw	0x85		       
 	movwf	c_delay_counter, A
@@ -567,11 +543,10 @@ C_DELAY_SEQ2:
 	
 Csharp:			    
     
-    MOVLW   0xC8     	    ; 1 op
-    MOVWF   PR2		    ; 1 op
+    MOVLW   0xC8   
+    MOVWF   PR2		    ; Set PWM period
 
 LOOP_CSHARP:
-    
     
 
 MOVLW    0x64 
@@ -602,9 +577,9 @@ CALL     SIGNAL
 CALL     CSHARP_DELAY 
     
 movf	 letter1, W, A
-call	 LCD_Send_Byte_D
+call	 LCD_Send_Byte_D		; Send letter to LCD
 movf	 letter2, W, A
-call	 LCD_Send_Byte_D
+call	 LCD_Send_Byte_D		; Send letter to LCD
     
 MOVLW    0xc1 
 MOVWF    duty_cycle_upper 
@@ -654,8 +629,7 @@ RETURN
 
 
     
- CSHARP_DELAY:					; THE LONGER THE DELAY, THE LOWER THE FREQUENCY
-					; BUT GETS TOO DISTORTED BELOW AROUND 0X20 DELAY FOR DELAY1 SO HIGH FREQUENCIES WORSE
+ CSHARP_DELAY:					
 
 	movlw	0x6c	
 	movwf	csharp_delay_counter, A
@@ -679,11 +653,10 @@ CSHARP_DELAY_SEQ2:
 	
 D_note:			
     
-    MOVLW   0xC8     	    ; 1 op
-    MOVWF   PR2		    ; 1 op
+    MOVLW   0xC8     
+    MOVWF   PR2		    ; Set PWM period
 
 LOOP_D:
-    
     
 
 MOVLW    0x64 
@@ -712,7 +685,7 @@ CALL     SIGNAL
 CALL     D_DELAY 
     
 movf	 letter1, W, A
-call	 LCD_Send_Byte_D    
+call	 LCD_Send_Byte_D		; Send letter to LCD    
  
 MOVLW    0xc1 
 MOVWF    duty_cycle_upper 
@@ -762,8 +735,7 @@ RETURN
 
 
     
- D_DELAY:					; THE LONGER THE DELAY, THE LOWER THE FREQUENCY
-					; BUT GETS TOO DISTORTED BELOW AROUND 0X20 DELAY FOR DELAY1 SO HIGH FREQUENCIES WORSE
+ D_DELAY:				
 
 	movlw	0x73		      
 	movwf	d_delay_counter, A
@@ -788,8 +760,8 @@ D_DELAY_SEQ2:
 	
 Dsharp:			 
     
-    MOVLW   0xC8     	    ; 1 op
-    MOVWF   PR2		    ; 1 op
+    MOVLW   0xC8   
+    MOVWF   PR2		    ; Set PWM period
 
 LOOP_DSHARP:
     
@@ -823,9 +795,9 @@ CALL     SIGNAL
 CALL     DSHARP_DELAY 
     
 movf	 letter1, W, A
-call	 LCD_Send_Byte_D
+call	 LCD_Send_Byte_D		; Send letter to LCD
 movf	 letter2, W, A
-call	 LCD_Send_Byte_D    
+call	 LCD_Send_Byte_D		; Send letter to LCD    
     
 MOVLW    0xc1 
 MOVWF    duty_cycle_upper 
@@ -875,8 +847,7 @@ RETURN
 
 
     
- DSHARP_DELAY:					; THE LONGER THE DELAY, THE LOWER THE FREQUENCY
-					; BUT GETS TOO DISTORTED BELOW AROUND 0X20 DELAY FOR DELAY1 SO HIGH FREQUENCIES WORSE
+ DSHARP_DELAY:			
 
 	movlw	0x5B		    
 	movwf	dsharp_delay_counter, A
@@ -900,8 +871,8 @@ DSHARP_DELAY_SEQ2:
 	
 E_note:			 
     
-    MOVLW   0xC8     	    ; 1 op
-    MOVWF   PR2		    ; 1 op
+    MOVLW   0xC8
+    MOVWF   PR2		    ; Set PWM period
 
 LOOP_E:
     
@@ -933,7 +904,7 @@ CALL     SIGNAL
 CALL     E_DELAY 
     
 movf	 letter1, W, A
-call	 LCD_Send_Byte_D    
+call	 LCD_Send_Byte_D		; Send letter to LCD    
     
 MOVLW    0xc1 
 MOVWF    duty_cycle_upper 
@@ -983,8 +954,7 @@ RETURN
 
 
     
- E_DELAY:					; THE LONGER THE DELAY, THE LOWER THE FREQUENCY
-					; BUT GETS TOO DISTORTED BELOW AROUND 0X20 DELAY FOR DELAY1 SO HIGH FREQUENCIES WORSE
+ E_DELAY:				
 
 	movlw	0x63		   
 	movwf	e_delay_counter, A
@@ -1010,8 +980,8 @@ E_DELAY_SEQ2:
 	
 F_note:			  
     
-    MOVLW   0xC8     	    ; 1 op
-    MOVWF   PR2		    ; 1 op
+    MOVLW   0xC8   
+    MOVWF   PR2		    ; Set PWM period
 
 LOOP_F:
     
@@ -1047,7 +1017,7 @@ CALL     SIGNAL
 CALL     F_DELAY 
     
 movf	 letter1, W, A
-call	 LCD_Send_Byte_D    
+call	 LCD_Send_Byte_D		; Send letter to LCD    
     
 MOVLW    0xab 
 MOVWF    duty_cycle_upper 
@@ -1093,8 +1063,7 @@ RETURN
 
 
     
- F_DELAY:					; THE LONGER THE DELAY, THE LOWER THE FREQUENCY
-					; BUT GETS TOO DISTORTED BELOW AROUND 0X20 DELAY FOR DELAY1 SO HIGH FREQUENCIES WORSE
+ F_DELAY:				
 
 	movlw	0x5B		     
 	movwf	f_delay_counter, A
@@ -1121,8 +1090,8 @@ F_DELAY_SEQ2:
 	
 Fsharp:			   
     
-    MOVLW   0xC8     	    ; 1 op
-    MOVWF   PR2		    ; 1 op
+    MOVLW   0xC8
+    MOVWF   PR2		    ; Set PWM period
 
 LOOP_FSHARP:
     
@@ -1160,9 +1129,9 @@ CALL     SIGNAL
 CALL     FSHARP_DELAY 
     
 movf	 letter1, W, A
-call	 LCD_Send_Byte_D
+call	 LCD_Send_Byte_D		; Send letter to LCD
 movf	 letter2, W, A
-call	 LCD_Send_Byte_D    
+call	 LCD_Send_Byte_D		; Send letter to LCD    
     
 MOVLW    0xab 
 MOVWF    duty_cycle_upper 
@@ -1208,8 +1177,7 @@ RETURN
 
 
     
- FSHARP_DELAY:					; THE LONGER THE DELAY, THE LOWER THE FREQUENCY
-					; BUT GETS TOO DISTORTED BELOW AROUND 0X20 DELAY FOR DELAY1 SO HIGH FREQUENCIES WORSE
+ FSHARP_DELAY:				
 
 	movlw	0x44		   
 	movwf	fsharp_delay_counter, A
@@ -1235,10 +1203,10 @@ FSHARP_DELAY_SEQ2:
 	
 	
 	
-G_note:			   	    ; 1 op
+G_note:		
     
-    MOVLW   0xff			    ; 1 op	    
-    MOVWF   PR2				    ; 1 op
+    MOVLW   0xff	    
+    MOVWF   PR2		    ; Set PWM period
 
 LOOP_G:
     
@@ -1270,7 +1238,7 @@ CALL     SIGNAL
 CALL     G_DELAY 
     
 movf	 letter1, W, A
-call	 LCD_Send_Byte_D    
+call	 LCD_Send_Byte_D		; Send letter to LCD    
     
 MOVLW    0xc8 
 MOVWF    duty_cycle_upper 
@@ -1316,24 +1284,23 @@ MOVLW    0x40
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
 
-RETURN			    ; 1 op
+RETURN			
 
 
     
- G_DELAY:					; THE LONGER THE DELAY, THE LOWER THE FREQUENCY
-					; BUT GETS TOO DISTORTED BELOW AROUND 0X20 DELAY FOR DELAY1 SO HIGH FREQUENCIES WORSE
+ G_DELAY:					
 					
 	movlw	0x37		       
 	movwf	g_delay_counter, A			
 G_DELAY_SEQ1:
 	decfsz	g_delay_counter, A	; decrement until zero	 
-	bra	G_DELAY_SEQ1					   	    2*1*delay_val = num of ops
+	bra	G_DELAY_SEQ1					   	    ;2*1*delay_val = num of ops
 G_DELAY2:	
 	movlw	0x1a		   	  
 	movwf	g_delay_counter, A				  
 G_DELAY_SEQ2:
 	decfsz	g_delay_counter, A	; decrement until zero	   
-	bra	G_DELAY_SEQ2					   	    2*1*delay_val = num of ops
+	bra	G_DELAY_SEQ2					   	    ;2*1*delay_val = num of ops
 	return							  
  
 	; total ops = 2 + 2*val1 + 2 + 2*val2 + 2 + 2*val3 + 1 = 7 + 2*val1 + 2*val2 + 2*val3
@@ -1353,21 +1320,21 @@ G_DELAY_SEQ2:
 	
 Gsharp:			   
     
-    MOVLW   0xF2     	    ; 1 op
-    MOVWF   PR2		    ; 1 op
+    MOVLW   0xF2   
+    MOVWF   PR2		    ; Set PWM period
 
 LOOP_GSHARP:
 
-; ----------- COMMENTED OUT ----------
+; ----------- COMMENTED OUT, THIS USES A SINE BUT NEW VALUES USE COSINE, BOTH WORK ----------
 
 ;MOVLW    0x79 
 ;MOVWF    duty_cycle_upper 
 ;CALL     SIGNAL
 ;    
-;	movlw	0x47		    ; hex for 'G' ASCII
-;	movwf	letter1, A
-;	movlw	0x23		    ; hex for '#' ASCII
-;	movwf	letter2, A
+;movlw	0x47		    ; hex for 'G' ASCII
+;movwf	letter1, A
+;movlw	0x23		    ; hex for '#' ASCII
+;movwf	letter2, A
 ;    
 ;MOVLW    0xc0 
 ;MOVWF    duty_cycle_upper 
@@ -1419,10 +1386,10 @@ MOVWF    duty_cycle_upper
 CALL     SIGNAL 
 	
 movlw	0x47		    ; hex for 'G' ASCII
-	movwf	letter1, A
-	movlw	0x23		    ; hex for '#' ASCII
-	movwf	letter2, A
-    	
+movwf	letter1, A
+movlw	0x23		    ; hex for '#' ASCII
+movwf	letter2, A
+
 	
 MOVLW    0x17 
 MOVWF    duty_cycle_upper 
@@ -1439,16 +1406,15 @@ CALL     GSHARP_DELAY
 MOVLW    0xdb 
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
-
 MOVLW    0xf3 
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
-	CALL     GSHARP_DELAY
+CALL     GSHARP_DELAY
 	
 movf	letter1, W, A
-call	LCD_Send_Byte_D
+call	LCD_Send_Byte_D		; Send letter to LCD
 movf	letter2, W, A
-call	LCD_Send_Byte_D		
+call	LCD_Send_Byte_D		; Send letter to LCD		
 	
 MOVLW    0xdb 
 MOVWF    duty_cycle_upper 
@@ -1465,8 +1431,6 @@ CALL     GSHARP_DELAY
 MOVLW    0x17 
 MOVWF    duty_cycle_upper 
 CALL     SIGNAL 
-	
-	
 	
 RETURN
 
@@ -1489,13 +1453,6 @@ GSHARP_DELAY_SEQ2:
 	bra	GSHARP_DELAY_SEQ2
 	return
  
-
-	
-
-	
-	
-	
-	
 	
 
 END
